@@ -49,12 +49,14 @@
 #define HWID_TL_WA901ND_V2	0x09010002
 #define HWID_TL_WDR4300_V1_IL	0x43008001
 #define HWID_TL_WDR4900_V1	0x49000001
+#define HWID_TL_WR340G_V7	0x03400007
 #define HWID_TL_WR703N_V1	0x07030101
 #define HWID_TL_WR720N_V3	0x07200103
 #define HWID_TL_WR741ND_V1	0x07410001
 #define HWID_TL_WR741ND_V4	0x07410004
 #define HWID_TL_WR740N_V1	0x07400001
 #define HWID_TL_WR740N_V3	0x07400003
+#define HWID_TL_WR740N_V5	0x07400005
 #define HWID_TL_WR743ND_V1	0x07430001
 #define HWID_TL_WR743ND_V2	0x07430002
 #define HWID_TL_WR841N_V1_5	0x08410002
@@ -299,6 +301,11 @@ static struct board_info boards[] = {
 		.hw_rev         = 1,
 		.layout_id	= "16Mppc",
 	}, {
+		.id		= "TL-WR340Gv7",
+		.hw_id		= HWID_TL_WR340G_V7,
+		.hw_rev		= 1,
+		.layout_id	= "8Mlzma",
+	}, {
 		.id		= "TL-WR741NDv1",
 		.hw_id		= HWID_TL_WR741ND_V1,
 		.hw_rev		= 1,
@@ -318,6 +325,11 @@ static struct board_info boards[] = {
 		.hw_id		= HWID_TL_WR740N_V3,
 		.hw_rev		= 1,
 		.layout_id	= "4M",
+	}, {
+		.id		= "TL-WR740Nv5",
+		.hw_id		= HWID_TL_WR740N_V5,
+		.hw_rev		= 1,
+		.layout_id	= "8Mlzma",
 	}, {
 		.id		= "TL-WR743NDv1",
 		.hw_id		= HWID_TL_WR743ND_V1,

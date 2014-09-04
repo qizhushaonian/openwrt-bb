@@ -100,6 +100,9 @@ tplink_board_detect() {
 	"3C0001"*)
 		model="OOLITE"
 		;;
+	"034000"*)
+		model="TP-Link TL-WR340G+"
+		;;
 	"070300"*)
 		model="TP-Link TL-WR703N"
 		;;
@@ -603,6 +606,10 @@ ar71xx_board_detect() {
 		;;
 	*"TL-WDR4900 v2")
 		name="tl-wdr4900-v2"
+		;;
+	*"TL-WR340G+ v7"| \
+ 	*"TL-WR740N v5")
+		name="tl-wr740n-v5"
 		;;
 	*TL-WR741ND)
 		name="tl-wr741nd"

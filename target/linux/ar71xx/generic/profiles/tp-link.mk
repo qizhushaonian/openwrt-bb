@@ -246,6 +246,17 @@ endef
 $(eval $(call Profile,TLWDR4900V2))
 
 
+define Profile/TLWR340
+	NAME:=TP-LINK TL-WR340G+
+	PACKAGES:=kmod-usb-core kmod-usb2
+endef
+
+define Profile/TLWR340/Description
+	Package set optimized for the TP-LINK TL-WR340G+.
+endef
+$(eval $(call Profile,TLWR340))
+
+
 define Profile/TLWR740
 	NAME:=TP-LINK TL-WR740N/ND
 	PACKAGES:=
