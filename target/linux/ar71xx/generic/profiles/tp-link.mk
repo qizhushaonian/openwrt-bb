@@ -279,6 +279,17 @@ endef
 $(eval $(call Profile,TLWR741))
 
 
+define Profile/TLWR742
+	NAME:=TP-LINK TL-WR742N
+	PACKAGES:=
+endef
+
+define Profile/TLWR742/Description
+	Package set optimized for the TP-LINK TL-WR742N.
+endef
+$(eval $(call Profile,TLWR742))
+
+
 define Profile/TLWR743
 	NAME:=TP-LINK TL-WR743N/ND
 	PACKAGES:=
@@ -288,6 +299,17 @@ define Profile/TLWR743/Description
 	Package set optimized for the TP-LINK TL-WR743N/ND.
 endef
 $(eval $(call Profile,TLWR743))
+
+
+define Profile/TLWR745
+	NAME:=TP-LINK TL-WR745N
+	PACKAGES:=
+endef
+
+define Profile/TLWR745/Description
+	Package set optimized for the TP-LINK TL-WR745N.
+endef
+$(eval $(call Profile,TLWR745))
 
 
 define Profile/TLWR841
