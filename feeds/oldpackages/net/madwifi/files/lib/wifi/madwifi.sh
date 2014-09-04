@@ -483,8 +483,6 @@ config wifi-device  radio$devidx
 	option channel  auto
 	option macaddr	$(cat /sys/class/net/${dev}/address)
 $EXTRA_DEV
-	# REMOVE THIS LINE TO ENABLE WIFI:
-	option disabled 1
 
 config wifi-iface
 	option device	radio$devidx
