@@ -1,6 +1,6 @@
 --- a/arch/mips/ath79/machtypes.h
 +++ b/arch/mips/ath79/machtypes.h
-@@ -16,22 +16,150 @@
+@@ -16,22 +16,151 @@
  
  enum ath79_mach_type {
  	ATH79_MACH_GENERIC = 0,
@@ -112,6 +112,7 @@
 +	ATH79_MACH_TL_WR841N_V8,	/* TP-LINK TL-WR841N/ND v8 */
 +	ATH79_MACH_TL_WR842N_V2,	/* TP-LINK TL-WR842N/ND v2 */
 +	ATH79_MACH_TL_WR941ND,		/* TP-LINK TL-WR941ND */
++	ATH79_MACH_TL_WR941ND_V6,	/* TP-LINK TL-WR941ND v6 */
 +	ATH79_MACH_TL_WR941ND_V7,	/* TP-LINK TL-WR941ND v7 */
  	ATH79_MACH_UBNT_AIRROUTER,	/* Ubiquiti AirRouter */
  	ATH79_MACH_UBNT_BULLET_M,	/* Ubiquiti Bullet M */
@@ -794,7 +795,7 @@
 +	select ATH79_DEV_WMAC
 +
 +config ATH79_MACH_TL_WDR3500
-+	bool "TP-LINK TL-WDR3500 board support"
++	bool "TP-LINK TL-WDR3500/TL-WR941ND v6 board support"
 +	select SOC_AR934X
 +	select ATH79_DEV_AP9X_PCI if PCI
 +	select ATH79_DEV_ETH

@@ -295,6 +295,7 @@ platform_check_image() {
 	tl-wr841n-v9 | \
 	tl-wr842n-v2 | \
 	tl-wr941nd | \
+	tl-wr941nd-v6 | \
 	tl-wr941nd-v7 | \
 	tl-wr1041n-v2 | \
 	tl-wr1043nd | \

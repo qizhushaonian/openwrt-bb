@@ -3,6 +3,7 @@
  *
  *  Copyright (C) 2012 Gabor Juhos <juhosg@openwrt.org>
  *  Copyright (C) 2013 Gui Iribarren <gui@altermundi.net>
+ *  Copyright (C) 2014 hackpascal <hackpascal@gmail.com>
  *
  *  This program is free software; you can redistribute it and/or modify it
  *  under the terms of the GNU General Public License version 2 as published
@@ -41,6 +42,9 @@
 
 #define WDR3500_GPIO_BTN_WPS		16
 #define WDR3500_GPIO_BTN_RFKILL		17
+
+#define WR941NDV6_GPIO_BTN_QSS		17
+#define WR941NDV6_GPIO_BTN_RESET	12
 
 #define WDR3500_GPIO_USB_POWER		12
 
@@ -102,22 +106,39 @@ static struct gpio_keys_button wdr3500_gpio_keys[] __initdata = {
 	},
 };
 
+static struct gpio_keys_button wr941ndv6_gpio_keys[] __initdata = {
+	{
+		.desc		= "wps",
+		.type		= EV_KEY,
+		.code		= KEY_WPS_BUTTON,
+		.debounce_interval = WDR3500_KEYS_DEBOUNCE_INTERVAL,
+		.gpio		= WR941NDV6_GPIO_BTN_QSS,
+		.active_low	= 1,
+	},
+	{
+		.desc		= "reset",
+		.type		= EV_KEY,
+		.code		= KEY_RESTART,
+		.debounce_interval = WDR3500_KEYS_DEBOUNCE_INTERVAL,
+		.gpio		= WR941NDV6_GPIO_BTN_RESET,
+		.active_low	= 1,
+	},
+};
 
-static void __init wdr3500_setup(void)
+
+static void __init common_setup(bool dualband)
 {
 	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
 	u8 *art = (u8 *) KSEG1ADDR(0x1fff0000);
 	u8 tmpmac[ETH_ALEN];
 
 	ath79_register_m25p80(&wdr3500_flash_data);
-	ath79_register_leds_gpio(-1, ARRAY_SIZE(wdr3500_leds_gpio),
-				 wdr3500_leds_gpio);
-	ath79_register_gpio_keys_polled(-1, WDR3500_KEYS_POLL_INTERVAL,
-					ARRAY_SIZE(wdr3500_gpio_keys),
-					wdr3500_gpio_keys);
 
-	ath79_init_mac(tmpmac, mac, 0);
-	ath79_register_wmac(art + WDR3500_WMAC_CALDATA_OFFSET, tmpmac);
+	if (dualband)
+	{
+		ath79_init_mac(tmpmac, mac, 0);
+		ath79_register_wmac(art + WDR3500_WMAC_CALDATA_OFFSET, tmpmac);
+	}
 
 	ath79_init_mac(tmpmac, mac, 1);
 	ap9x_pci_setup_wmac_led_pin(0, 0);
@@ -147,9 +168,13 @@ static void __init wdr3500_setup(void)
 
 	ath79_register_eth(0);
 
-	gpio_request_one(WDR3500_GPIO_USB_POWER,
+	if (dualband)
+	{
+		gpio_request_one(WDR3500_GPIO_USB_POWER,
 			 GPIOF_OUT_INIT_HIGH | GPIOF_EXPORT_DIR_FIXED,
 			 "USB power");
+	}
+
 	ath79_register_usb();
 
 	ath79_gpio_output_select(WDR3500_GPIO_LED_LAN1,
@@ -164,6 +189,36 @@ static void __init wdr3500_setup(void)
 				 AR934X_GPIO_OUT_LED_LINK4);
 }
 
+
+static void __init wdr3500_setup(void)
+{
+	common_setup(true);
+
+	ath79_register_leds_gpio(-1, ARRAY_SIZE(wdr3500_leds_gpio),
+				 wdr3500_leds_gpio);
+
+	ath79_register_gpio_keys_polled(-1, WDR3500_KEYS_POLL_INTERVAL,
+					ARRAY_SIZE(wdr3500_gpio_keys),
+					wdr3500_gpio_keys);
+}
+
+
+static void __init wr941ndv6_setup(void)
+{
+	common_setup(false);
+
+	ath79_register_leds_gpio(-1, ARRAY_SIZE(wdr3500_leds_gpio) - 2,
+				 wdr3500_leds_gpio);
+
+	ath79_register_gpio_keys_polled(-1, WDR3500_KEYS_POLL_INTERVAL,
+					ARRAY_SIZE(wr941ndv6_gpio_keys),
+					wr941ndv6_gpio_keys);
+}
+
 MIPS_MACHINE(ATH79_MACH_TL_WDR3500, "TL-WDR3500",
 	     "TP-LINK TL-WDR3500",
 	     wdr3500_setup);
+
+MIPS_MACHINE(ATH79_MACH_TL_WR941ND_V6, "TL-WR941ND-v6",
+	     "TP-LINK TL-WR941N/ND v6",
+	     wr941ndv6_setup);
