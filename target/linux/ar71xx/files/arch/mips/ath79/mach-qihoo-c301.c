@@ -28,6 +28,7 @@
 #include "dev-wmac.h"
 #include "machtypes.h"
 #include "nvram.h"
+#include "eeprom.h"
 
 #define QIHOO_C301_GPIO_LED_STATUS_GREEN	0
 #define QIHOO_C301_GPIO_LED_STATUS_RED		11
@@ -94,8 +95,13 @@ static void qihoo_c301_get_mac(const char *name, char *mac)
 
 static void __init qihoo_c301_setup(void)
 {
-	u8 *art = (u8 *) KSEG1ADDR(0x1fff0000);
+	u8 *art;
 	u8 tmpmac[ETH_ALEN];
+
+	if (strstr(arcs_cmdline, "mtdparts=flash:"))
+		art = ath79_get_eeprom(1);
+	else
+		art = ath79_get_eeprom(0);
 
 	ath79_register_m25p80_multi(&flash);
 
