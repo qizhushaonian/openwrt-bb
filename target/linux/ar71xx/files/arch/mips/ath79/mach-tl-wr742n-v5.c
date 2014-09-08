@@ -22,6 +22,7 @@
 #include "dev-usb.h"
 #include "dev-wmac.h"
 #include "machtypes.h"
+#include "eeprom.h"
 
 #define TL_WR742NV5_GPIO_BTN_RESET_WPS	11
 
@@ -88,7 +89,7 @@ static struct gpio_keys_button tl_wr742nv5_gpio_keys[] __initdata = {
 static void __init tl_ap121_setup(void)
 {
 	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
-	u8 *ee = (u8 *) KSEG1ADDR(0x1fff1000);
+	u8 *ee = ath79_get_eeprom(0) + 0x1000;
 
 	ath79_setup_ar933x_phy4_switch(false, false);
 

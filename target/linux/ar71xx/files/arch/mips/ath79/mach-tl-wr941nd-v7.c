@@ -29,6 +29,7 @@
 #include "dev-usb.h"
 #include "dev-wmac.h"
 #include "machtypes.h"
+#include "eeprom.h"
 
 #define WR941NDV7_GPIO_LED_WLAN			12
 #define WR941NDV7_GPIO_LED_SYSTEM		19
@@ -241,7 +242,7 @@ static void __init ar8236_reset(void)
 static void __init wr941ndv7_setup(void)
 {
 	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
-	u8 *art = (u8 *) KSEG1ADDR(0x1fff1000);
+	u8 *art = ath79_get_eeprom(0) + 0x1000;
 
 	ath79_register_m25p80(&wr941ndv7_flash_data);
 	ath79_register_leds_gpio(-1, ARRAY_SIZE(wr941ndv7_leds_gpio),

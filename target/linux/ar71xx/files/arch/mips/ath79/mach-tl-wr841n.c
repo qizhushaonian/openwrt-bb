@@ -38,7 +38,6 @@ static struct mtd_partition tl_wr841n_v1_partitions[] = {
 		.name		= "redboot",
 		.offset		= 0,
 		.size		= 0x020000,
-		.mask_flags	= MTD_WRITEABLE,
 	}, {
 		.name		= "kernel",
 		.offset		= 0x020000,
@@ -51,7 +50,6 @@ static struct mtd_partition tl_wr841n_v1_partitions[] = {
 		.name		= "config",
 		.offset		= 0x3e0000,
 		.size		= 0x020000,
-		.mask_flags	= MTD_WRITEABLE,
 	}, {
 		.name		= "firmware",
 		.offset		= 0x020000,

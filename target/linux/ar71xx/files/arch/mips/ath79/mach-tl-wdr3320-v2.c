@@ -26,6 +26,7 @@
 #include "dev-usb.h"
 #include "dev-wmac.h"
 #include "machtypes.h"
+#include "eeprom.h"
 
 #define WDR3320_GPIO_LED_WLAN5G		12
 #define WDR3320_GPIO_LED_SYSTEM		14
@@ -85,7 +86,7 @@ static struct gpio_keys_button wdr3320_gpio_keys[] __initdata = {
 static void __init wdr3320_setup(void)
 {
 	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
-	u8 *art = (u8 *) KSEG1ADDR(0x1fff0000);
+	u8 *art = ath79_get_eeprom(0);
 	u8 tmpmac[ETH_ALEN];
 
 	ath79_register_m25p80(&wdr3320_flash_data);
