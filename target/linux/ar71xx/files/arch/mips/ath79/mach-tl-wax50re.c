@@ -22,6 +22,7 @@
 #include "dev-leds-gpio.h"
 #include "dev-m25p80.h"
 #include "dev-wmac.h"
+#include "dev-usb.h"
 #include "machtypes.h"
 #include "eeprom.h"
 
@@ -241,6 +242,8 @@ static void __init tl_ap123_setup(void)
 	ath79_register_eth(0);
 
 	ath79_register_wmac(ee, mac);
+
+	ath79_register_usb();
 }
 
 static void  __init tl_wa750re_setup(void)

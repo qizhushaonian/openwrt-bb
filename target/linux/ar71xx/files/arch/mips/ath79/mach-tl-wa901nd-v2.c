@@ -18,6 +18,7 @@
 #include "dev-gpio-buttons.h"
 #include "dev-leds-gpio.h"
 #include "dev-wmac.h"
+#include "dev-usb.h"
 #include "machtypes.h"
 #include "eeprom.h"
 
@@ -99,6 +100,8 @@ static void __init tl_wa901nd_v2_setup(void)
 					tl_wa901nd_v2_gpio_keys);
 
 	ath79_register_wmac(eeprom, mac);
+
+	ath79_register_usb();
 }
 
 MIPS_MACHINE(ATH79_MACH_TL_WA901ND_V2, "TL-WA901ND-v2",

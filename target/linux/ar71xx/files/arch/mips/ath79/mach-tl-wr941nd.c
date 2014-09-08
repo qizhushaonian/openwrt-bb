@@ -18,6 +18,7 @@
 #include "dev-leds-gpio.h"
 #include "dev-m25p80.h"
 #include "dev-wmac.h"
+#include "dev-usb.h"
 #include "machtypes.h"
 #include "eeprom.h"
 
@@ -116,6 +117,8 @@ static void __init tl_wr941nd_setup(void)
 					ARRAY_SIZE(tl_wr941nd_gpio_keys),
 					tl_wr941nd_gpio_keys);
 	ath79_register_wmac(eeprom, mac);
+
+	ath79_register_usb();
 }
 
 MIPS_MACHINE(ATH79_MACH_TL_WR941ND, "TL-WR941ND", "TP-LINK TL-WR941ND",

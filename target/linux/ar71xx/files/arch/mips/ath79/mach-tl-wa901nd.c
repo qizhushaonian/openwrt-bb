@@ -19,6 +19,7 @@
 #include "dev-gpio-buttons.h"
 #include "dev-leds-gpio.h"
 #include "dev-m25p80.h"
+#include "dev-usb.h"
 #include "machtypes.h"
 #include "pci.h"
 #include "eeprom.h"
@@ -90,6 +91,8 @@ static void __init common_setup(void)
 	ath79_register_eth(1);
 
 	ath79_register_m25p80(&tl_wa901nd_flash_data);
+
+	ath79_register_usb();
 }
 
 static void __init tl_wa901nd_setup(void)
