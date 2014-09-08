@@ -357,7 +357,8 @@ $(eval $(call collection,,\
 	Standard OpenWrt set including full admin with ppp support and the \
 	default OpenWrt theme,\
 	+uhttpd +uhttpd-mod-ubus +luci-mod-admin-full +luci-theme-bootstrap \
-	+luci-app-firewall +luci-proto-ppp +libiwinfo-lua +luci-lib-nixio))
+	+luci-app-firewall +luci-proto-ppp +libiwinfo-lua +luci-lib-nixio \
+	+luci-i18n-chinese))
 
 $(eval $(call collection,ssl,\
 	Standard OpenWrt set with HTTPS support,\
@@ -365,7 +366,7 @@ $(eval $(call collection,ssl,\
 
 $(eval $(call collection,light,\
 	Minimum package set using only admin mini and the standard theme,\
-	+uhttpd +luci-mod-admin-mini +luci-theme-openwrt @BROKEN))
+	+uhttpd +luci-mod-admin-mini +luci-theme-openwrt +luci-i18n-chinese @BROKEN))
 
 
 ### Compile ###

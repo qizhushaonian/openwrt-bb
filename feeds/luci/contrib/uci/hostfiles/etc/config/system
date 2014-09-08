@@ -1,3 +1,4 @@
 config system
 	option hostname	OpenWrt
-	option timezone	UTC
+	option timezone	CST-8
+	option zonename Asia/Shanghai
