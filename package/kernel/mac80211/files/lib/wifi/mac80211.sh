@@ -74,6 +74,9 @@ detect_mac80211() {
 		channel="11"
 		htmode=""
 		ht_capab=""
+		ssid_5ghz=""
+
+		ssid_suffix=_$(cat /sys/class/ieee80211/${dev}/addresses | sed 's/.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:\(.[0-9A-Fa-f]\):\(.[0-9A-Fa-f]\):\(.[0-9A-Fa-f]\)/\1\2\3/g' | tr :[a-z] :[A-Z])
 
 		iw phy "$dev" info | grep -q 'Capabilities:' && htmode=HT20
 		iw phy "$dev" info | grep -q '2412 MHz' || { mode_band="a"; channel="36"; }
@@ -81,7 +84,7 @@ detect_mac80211() {
 		vht_cap=$(iw phy "$dev" info | grep -c 'VHT Capabilities')
 		[ "$vht_cap" -gt 0 ] && {
 			mode_band="a";
-			channel="36"
+			channel="149"
 			htmode="VHT80"
 		}
 
@@ -93,6 +96,10 @@ detect_mac80211() {
 			dev_id="	option path	'$path'"
 		else
 			dev_id="	option macaddr	$(cat /sys/class/ieee80211/${dev}/macaddress)"
+		fi
+
+		if [ x$mode_band == x"a" ]; then
+			ssid_5ghz="_5GHz"
 		fi
 
 		cat <<EOF
@@ -107,7 +114,7 @@ config wifi-iface
 	option device   radio$devidx
 	option network  lan
 	option mode     ap
-	option ssid     OpenWrt
+	option ssid     OpenWrt${ssid_5ghz}${ssid_suffix}
 	option encryption none
 
 EOF
