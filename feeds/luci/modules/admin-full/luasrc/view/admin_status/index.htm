@@ -97,6 +97,13 @@ You may obtain a copy of the License at
 	end
 
 	local system, model = luci.sys.sysinfo()
+
+	local cpu_clk = luci.sys.exec("cat /proc/cpuinfo | grep CPUClock | awk '{print $3}'");
+	local soc_model = luci.sys.exec("cat /proc/cpuinfo | grep 'system type' | cut -d : -f 2");
+
+	if string.sub(soc_model, 1, 1) == " " then
+		soc_model = string.sub(soc_model, 2, -1);
+	end
 -%>
 
 <%+header%>
@@ -566,6 +573,8 @@ You may obtain a copy of the License at
 			<%=pcdata(luci.version.distname)%> <%=pcdata(luci.version.distversion)%> /
 			<%=pcdata(luci.version.luciname)%> (<%=pcdata(luci.version.luciversion)%>)
 		</td></tr>
+		<tr><td width="33%"><%:Chip Model%></td><td><%=soc_model%></td></tr>
+		<tr><td width="33%"><%:CPU frequency%></td><td><%=cpu_clk%></td></tr>
 		<tr><td width="33%"><%:Kernel Version%></td><td><%=luci.sys.exec("uname -r")%></td></tr>
 		<tr><td width="33%"><%:Local Time%></td><td id="localtime">-</td></tr>
 		<tr><td width="33%"><%:Uptime%></td><td id="uptime">-</td></tr>
