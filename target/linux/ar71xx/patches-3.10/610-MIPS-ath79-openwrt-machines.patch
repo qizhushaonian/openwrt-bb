@@ -1,6 +1,6 @@
 --- a/arch/mips/ath79/machtypes.h
 +++ b/arch/mips/ath79/machtypes.h
-@@ -16,22 +16,151 @@
+@@ -16,22 +16,152 @@
  
  enum ath79_mach_type {
  	ATH79_MACH_GENERIC = 0,
@@ -54,6 +54,7 @@
 +	ATH79_MACH_OM2P,		/* OpenMesh OM2P */
 +	ATH79_MACH_PB42,		/* Atheros PB42 */
 +	ATH79_MACH_PB92,		/* Atheros PB92 */
++	ATH79_MACH_QIHOO_C301,		/* Qihoo 360 C301 */
 +	ATH79_MACH_RB_411,		/* MikroTik RouterBOARD 411/411A/411AH */
 +	ATH79_MACH_RB_411U,		/* MikroTik RouterBOARD 411U */
 +	ATH79_MACH_RB_433,		/* MikroTik RouterBOARD 433/433AH */
@@ -1020,7 +1021,7 @@
  
  config ATH79_MACH_UBNT_XM
  	bool "Ubiquiti Networks XM/UniFi boards"
-@@ -83,6 +810,65 @@ config ATH79_MACH_UBNT_XM
+@@ -83,6 +810,76 @@ config ATH79_MACH_UBNT_XM
  	  Say 'Y' here if you want your kernel to support the
  	  Ubiquiti Networks XM (rev 1.0) board.
  
@@ -1083,6 +1084,17 @@
 +	select ATH79_DEV_USB
 +	select ATH79_DEV_WMAC
 +
++config ATH79_MACH_QIHOO_C301
++	bool "Qihoo 360 C301 board support"
++	select SOC_AR934X
++	select ATH79_DEV_ETH
++	select ATH79_DEV_GPIO_BUTTONS
++	select ATH79_DEV_LEDS_GPIO
++	select ATH79_DEV_M25P80
++	select ATH79_DEV_WMAC
++	select ATH79_DEV_USB
++	select ATH79_NVRAM
++
  endmenu
  
  config SOC_AR71XX
@@ -1108,7 +1120,7 @@
  endif
 --- a/arch/mips/ath79/Makefile
 +++ b/arch/mips/ath79/Makefile
-@@ -38,9 +38,94 @@ obj-$(CONFIG_ATH79_ROUTERBOOT)		+= route
+@@ -38,9 +38,95 @@ obj-$(CONFIG_ATH79_ROUTERBOOT)		+= route
  #
  # Machines
  #
@@ -1149,6 +1161,7 @@
 +obj-$(CONFIG_ATH79_MACH_PB42)		+= mach-pb42.o
  obj-$(CONFIG_ATH79_MACH_PB44)		+= mach-pb44.o
 +obj-$(CONFIG_ATH79_MACH_PB92)		+= mach-pb92.o
++obj-$(CONFIG_ATH79_MACH_QIHOO_C301)	+= mach-qihoo-c301.o
 +obj-$(CONFIG_ATH79_MACH_RB4XX)		+= mach-rb4xx.o
 +obj-$(CONFIG_ATH79_MACH_RB750)		+= mach-rb750.o
 +obj-$(CONFIG_ATH79_MACH_RB95X)		+= mach-rb95x.o

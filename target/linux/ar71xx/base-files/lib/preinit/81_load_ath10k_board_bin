@@ -24,6 +24,33 @@ do_load_ath10k_board_bin() {
 				bs=1 skip=20492 count=2104 >> /tmp/ath10k-board.bin
 
 		;;
+		qihoo-c301)
+			local mac
+			local tmp
+
+			if cat /proc/mtd | grep "spi0.0" >/dev/null 2>/dev/null; then
+				dd if=/dev/mtdblock4 of=/tmp/c301-nvram >/dev/null 2>/dev/null
+			else
+				dd if=/dev/mtdblock2 of=/tmp/c301-nvram >/dev/null 2>/dev/null
+			fi
+
+			tmp=$(cat /tmp/c301-nvram | grep 'wlan5mac=\(.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]\)')
+
+			if [ $? == 0 ]; then
+				rm -f /tmp/c301-nvram
+				mac=$(echo ${tmp} | sed 's/wlan5mac=\(.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]\)/\1/g')
+			else
+				mac=$(macaddr_add $(cat /sys/class/net/eth0/address) -2)
+			fi
+
+			dd if=/dev/mtdblock10 \
+				bs=1 skip=20480 count=6 \
+				of=/tmp/ath10k-board.bin
+			macaddr_2bin $mac >> /tmp/ath10k-board.bin
+			dd if=/dev/mtdblock10 \
+				bs=1 skip=20492 count=2104 >> /tmp/ath10k-board.bin
+
+		;;
 	esac
 	[ -f /tmp/ath10k-board.bin ] || {
 		return
