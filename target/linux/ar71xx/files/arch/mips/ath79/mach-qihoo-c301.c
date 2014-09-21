@@ -14,6 +14,8 @@
 #include <linux/gpio.h>
 #include <linux/platform_device.h>
 #include <linux/ath9k_platform.h>
+#include <linux/crc32.h>
+#include <linux/mtd/mtd.h>
 
 #include <asm/mach-ath79/ar71xx_regs.h>
 
@@ -81,6 +83,8 @@ static struct gpio_keys_button qihoo_c301_gpio_keys[] __initdata = {
 };
 
 struct flash_platform_data flash __initdata = {NULL, NULL, 0};
+
+static int qihoo_c301_board = 0;
 
 static void qihoo_c301_get_mac(const char *name, char *mac)
 {
@@ -167,8 +171,98 @@ static void __init qihoo_c301_setup(void)
 			 GPIOF_OUT_INIT_HIGH | GPIOF_EXPORT_DIR_FIXED,
 			 "USB power");
 	ath79_register_usb();
+
+	qihoo_c301_board = 1;
 }
 
 MIPS_MACHINE(ATH79_MACH_QIHOO_C301, "Qihoo-C301", "Qihoo 360 C301",
 	     qihoo_c301_setup);
 
+static void erase_callback(struct erase_info *erase)
+{
+	char *buf = (char*) erase->priv;
+	int ret;
+	size_t nb = 0;
+
+	if (erase->state == MTD_ERASE_DONE)
+		ret = mtd_write(erase->mtd, 0, 0x10000, &nb, buf);
+
+	kfree(erase);
+	kfree(buf);
+}
+
+static int qihoo_reset_trynum(void)
+{
+	size_t nb = 0;
+	char *buf = 0, *p;
+	const char match[] = "image1trynum=";
+	struct erase_info *erase;
+	struct mtd_info * mtd;
+	unsigned int newcrc;
+	int ret;
+
+	if (!qihoo_c301_board)
+		return 0;
+
+	mtd = get_mtd_device_nm("action_image_config");
+	if (IS_ERR(mtd))
+		return PTR_ERR(mtd);
+
+	if (mtd->size != 0x10000)
+		return -1;
+
+	buf = kzalloc(0x10000, GFP_KERNEL);
+	if (!buf)
+		return -1;
+
+	ret = mtd_read(mtd, 0, 0x10000, &nb, buf);
+	if (nb != 0x10000)
+	{
+		kfree(buf);
+		return -1;
+	}
+
+	p = buf + 4;
+
+	while (p < buf + 0x10000)
+	{
+		if (!strncmp(p, match, sizeof (match) - 1))
+		{
+			p += sizeof (match) - 1;
+			while (*p)
+				*p++ = '0';
+			break;
+		}
+		
+		p++;
+	}
+
+	newcrc = cpu_to_be32(crc32(~0, buf + 4, 0xfffc) ^ 0xffffffff);
+	memcpy(buf, &newcrc, 4);
+
+	erase = kzalloc(sizeof(struct erase_info), GFP_KERNEL);
+	if (!erase)
+	{
+		kfree(buf);
+		return -1;
+	}
+
+	erase->mtd	= mtd;
+	erase->callback	= erase_callback;
+	erase->addr	= 0;
+	erase->len	= 0x10000;
+	erase->priv	= (u_long) buf;
+
+	ret = mtd_erase(mtd, erase);
+
+	if (ret)
+	{
+		kfree(buf);
+		kfree(erase);
+		return ret;
+	}
+
+	return 0;
+}
+
+late_initcall(qihoo_reset_trynum);
