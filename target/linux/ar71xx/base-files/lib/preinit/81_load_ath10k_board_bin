@@ -26,20 +26,10 @@ do_load_ath10k_board_bin() {
 		;;
 		qihoo-c301)
 			local mac
-			local tmp
 
-			if cat /proc/mtd | grep "spi0.0" >/dev/null 2>/dev/null; then
-				dd if=/dev/mtdblock4 of=/tmp/c301-nvram >/dev/null 2>/dev/null
-			else
-				dd if=/dev/mtdblock2 of=/tmp/c301-nvram >/dev/null 2>/dev/null
-			fi
+			mac=$(mtd_get_mac_ascii devdata wlan5mac)
 
-			tmp=$(cat /tmp/c301-nvram | grep 'wlan5mac=\(.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]\)')
-
-			if [ $? == 0 ]; then
-				rm -f /tmp/c301-nvram
-				mac=$(echo ${tmp} | sed 's/wlan5mac=\(.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]\)/\1/g')
-			else
+			if [ -z "$mac" ]; then
 				mac=$(macaddr_add $(cat /sys/class/net/eth0/address) -2)
 			fi
 
