@@ -193,7 +193,7 @@ if hwtype == "mac80211" then
 	mode = s:taboption("advanced", ListValue, "hwmode", translate("Band"))
 
 	if hw_modes.ac then
-		if hw_modes.ac then mode:value("11nac", "5GHz (802.11n+ac)") end
+		if hw_modes.ac then mode:value("11a", "5GHz (802.11n+ac)") end
 
 		htmode = s:taboption("advanced", ListValue, "htmode", translate("VHT mode (802.11ac)"))
 		htmode:value("", translate("disabled"))
