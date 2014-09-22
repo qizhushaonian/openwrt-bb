@@ -20,6 +20,7 @@
 #include <asm/mach-ath79/ar71xx_regs.h>
 
 #include "common.h"
+#include "pci.h"
 #include "dev-ap9x-pci.h"
 #include "dev-eth.h"
 #include "dev-gpio-buttons.h"
@@ -53,7 +54,6 @@
 #define QIHOO_C301_KEYS_DEBOUNCE_INTERVAL 	(3 * QIHOO_C301_KEYS_POLL_INTERVAL)
 
 #define QIHOO_C301_WMAC_CALDATA_OFFSET		0x1000
-#define QIHOO_C301_PCIE_CALDATA_OFFSET		0x5000
 
 #define QIHOO_C301_NVRAM_ADDR			0x1f058010
 #define QIHOO_C301_NVRAM_SIZE			0x7ff0
@@ -138,8 +138,7 @@ static void __init qihoo_c301_setup(void)
 	qihoo_c301_get_mac("wlan24mac=", tmpmac);
 	ath79_register_wmac(art + QIHOO_C301_WMAC_CALDATA_OFFSET, tmpmac);
 
-	qihoo_c301_get_mac("wlan5mac=", tmpmac);
-	ap91_pci_init(art + QIHOO_C301_PCIE_CALDATA_OFFSET, tmpmac);
+	ath79_register_pci();
 
 	ath79_setup_ar934x_eth_cfg(AR934X_ETH_CFG_SW_ONLY_MODE |
 				   AR934X_ETH_CFG_SW_PHY_SWAP);
