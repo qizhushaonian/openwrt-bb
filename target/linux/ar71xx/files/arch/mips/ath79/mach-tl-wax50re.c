@@ -24,7 +24,7 @@
 #include "dev-wmac.h"
 #include "dev-usb.h"
 #include "machtypes.h"
-#include "eeprom.h"
+#include "tplink-wmac.h"
 
 #define TL_WAX50RE_GPIO_LED_LAN		20
 #define TL_WAX50RE_GPIO_LED_WLAN	13
@@ -226,7 +226,6 @@ static struct gpio_led tl_wa801nd_v2_leds_gpio[] __initdata = {
 static void __init tl_ap123_setup(void)
 {
 	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
-	u8 *ee = ath79_get_eeprom(0) + 0x1000;
 
 	ath79_register_m25p80(&tl_wax50re_flash_data);
 
@@ -241,7 +240,7 @@ static void __init tl_ap123_setup(void)
 	ath79_eth0_data.mii_bus_dev = &ath79_mdio1_device.dev;
 	ath79_register_eth(0);
 
-	ath79_register_wmac(ee, mac);
+	tplink_register_builtin_wmac1(0x1000, mac, 0);
 
 	ath79_register_usb();
 }

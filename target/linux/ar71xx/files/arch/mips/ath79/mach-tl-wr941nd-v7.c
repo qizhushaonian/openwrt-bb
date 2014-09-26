@@ -29,7 +29,7 @@
 #include "dev-usb.h"
 #include "dev-wmac.h"
 #include "machtypes.h"
-#include "eeprom.h"
+#include "tplink-wmac.h"
 
 #define WR941NDV7_GPIO_LED_WLAN			12
 #define WR941NDV7_GPIO_LED_SYSTEM		19
@@ -242,7 +242,6 @@ static void __init ar8236_reset(void)
 static void __init wr941ndv7_setup(void)
 {
 	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
-	u8 *art = ath79_get_eeprom(0) + 0x1000;
 
 	ath79_register_m25p80(&wr941ndv7_flash_data);
 	ath79_register_leds_gpio(-1, ARRAY_SIZE(wr941ndv7_leds_gpio),
@@ -251,7 +250,7 @@ static void __init wr941ndv7_setup(void)
 					ARRAY_SIZE(wr941ndv7_gpio_keys),
 					wr941ndv7_gpio_keys);
 
-	ath79_register_wmac(art, mac);
+	tplink_register_builtin_wmac1(0x1000, mac, 1);
 
 	ar8236_reset();
 
@@ -262,7 +261,7 @@ static void __init wr941ndv7_setup(void)
 				    ARRAY_SIZE(wr941ndv7_mdio0_info));
 	ath79_register_mdio(0, 0x0);
 
-	ath79_init_mac(ath79_eth0_data.mac_addr, mac, -1);
+	ath79_init_mac(ath79_eth0_data.mac_addr, mac, 0);
 
 	/* GMAC0 is connected to an AR8236 switch */
 	ath79_eth0_data.phy_if_mode = PHY_INTERFACE_MODE_MII;

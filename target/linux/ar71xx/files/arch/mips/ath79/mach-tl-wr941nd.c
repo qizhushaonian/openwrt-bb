@@ -20,7 +20,7 @@
 #include "dev-wmac.h"
 #include "dev-usb.h"
 #include "machtypes.h"
-#include "eeprom.h"
+#include "tplink-wmac.h"
 
 #define TL_WR941ND_GPIO_LED_SYSTEM	2
 #define TL_WR941ND_GPIO_LED_QSS_RED	4
@@ -95,7 +95,6 @@ static struct dsa_platform_data tl_wr941nd_dsa_data = {
 static void __init tl_wr941nd_setup(void)
 {
 	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
-	u8 *eeprom = ath79_get_eeprom(0) + 0x1000;
 
 	ath79_register_mdio(0, 0x0);
 
@@ -116,7 +115,8 @@ static void __init tl_wr941nd_setup(void)
 	ath79_register_gpio_keys_polled(-1, TL_WR941ND_KEYS_POLL_INTERVAL,
 					ARRAY_SIZE(tl_wr941nd_gpio_keys),
 					tl_wr941nd_gpio_keys);
-	ath79_register_wmac(eeprom, mac);
+
+	tplink_register_builtin_wmac1(0x1000, mac, -1);
 
 	ath79_register_usb();
 }

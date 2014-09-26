@@ -20,7 +20,7 @@
 #include "dev-wmac.h"
 #include "dev-usb.h"
 #include "machtypes.h"
-#include "eeprom.h"
+#include "tplink-wmac.h"
 
 #define TL_WA901ND_V2_GPIO_LED_QSS		4
 #define TL_WA901ND_V2_GPIO_LED_SYSTEM		2
@@ -78,7 +78,6 @@ static struct gpio_keys_button tl_wa901nd_v2_gpio_keys[] __initdata = {
 static void __init tl_wa901nd_v2_setup(void)
 {
 	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
-	u8 *eeprom  = ath79_get_eeprom(0) + 0x1000;
 
 	ath79_init_mac(ath79_eth0_data.mac_addr, mac, 0);
 
@@ -99,7 +98,7 @@ static void __init tl_wa901nd_v2_setup(void)
 					ARRAY_SIZE(tl_wa901nd_v2_gpio_keys),
 					tl_wa901nd_v2_gpio_keys);
 
-	ath79_register_wmac(eeprom, mac);
+	tplink_register_builtin_wmac1(0x1000, mac, 0);
 
 	ath79_register_usb();
 }

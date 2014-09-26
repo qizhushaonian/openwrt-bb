@@ -22,7 +22,7 @@
 #include "dev-usb.h"
 #include "dev-wmac.h"
 #include "machtypes.h"
-#include "eeprom.h"
+#include "tplink-wmac.h"
 
 #define TL_WR742NV5_GPIO_BTN_RESET_WPS	11
 
@@ -32,8 +32,6 @@
 #define TL_WR742NV5_GPIO_LED_LAN3	15
 #define TL_WR742NV5_GPIO_LED_LAN4	16
 #define TL_WR742NV5_GPIO_LED_SYSTEM	0
-
-#define TL_WR742NV5_GPIO_USB_POWER	8
 
 #define TL_WR742NV5_KEYS_POLL_INTERVAL	20	/* msecs */
 #define TL_WR742NV5_KEYS_DEBOUNCE_INTERVAL (3 * TL_WR742NV5_KEYS_POLL_INTERVAL)
@@ -89,7 +87,6 @@ static struct gpio_keys_button tl_wr742nv5_gpio_keys[] __initdata = {
 static void __init tl_ap121_setup(void)
 {
 	u8 *mac = (u8 *) KSEG1ADDR(0x1f01fc00);
-	u8 *ee = ath79_get_eeprom(0) + 0x1000;
 
 	ath79_setup_ar933x_phy4_switch(false, false);
 
@@ -101,17 +98,14 @@ static void __init tl_ap121_setup(void)
 
 	ath79_register_m25p80(&tl_wr742nv5_flash_data);
 	ath79_init_mac(ath79_eth0_data.mac_addr, mac, 1);
-	ath79_init_mac(ath79_eth1_data.mac_addr, mac, -1);
+	ath79_init_mac(ath79_eth1_data.mac_addr, mac, 0);
 
 	ath79_register_mdio(0, 0x0);
 	ath79_register_eth(1);
 	ath79_register_eth(0);
 
-	ath79_register_wmac(ee, mac);
+	tplink_register_builtin_wmac1(0x1000, mac, -1);
 
-	gpio_request_one(TL_WR742NV5_GPIO_USB_POWER,
-			 GPIOF_OUT_INIT_HIGH | GPIOF_EXPORT_DIR_FIXED,
-			 "USB power");
 	ath79_register_usb();
 }
 
