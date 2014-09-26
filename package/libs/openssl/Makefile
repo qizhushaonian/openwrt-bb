@@ -49,7 +49,7 @@ $(call Package/openssl/Default)
   SECTION:=libs
   SUBMENU:=SSL
   CATEGORY:=Libraries
-  DEPENDS:=+zlib
+  DEPENDS:=+zlib +libpthread
   TITLE+= (libraries)
   MENU:=1
 endef
@@ -138,7 +138,7 @@ define Build/Configure
 		depend
 endef
 
-TARGET_CFLAGS += $(FPIC)
+TARGET_CFLAGS += $(FPIC) -DOPENSSL_THREADS -D_REENTRANT -D_THREAD_SAFE -D_THREADSAFE -pthread
 
 define Build/Compile
 	+$(MAKE) $(PKG_JOBS) -C $(PKG_BUILD_DIR) \
@@ -197,5 +197,5 @@ define Package/openssl-util/install
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/openssl $(1)/usr/bin/
 endef
 
-$(eval $(call BuildPackage,libopenssl))
+$(eval $(call BuildPackage,libopenssl,+libpthread))
 $(eval $(call BuildPackage,openssl-util))
