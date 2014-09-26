@@ -35,7 +35,7 @@ msgid "Edit Template"
 msgstr "编辑模板"
 
 msgid "Edit the template that is used for generating the samba configuration."
-msgstr "编辑用来生成samba设置的模板"
+msgstr "编辑用来生成 samba 设置的模板"
 
 msgid "General Settings"
 msgstr "基本设置"
@@ -73,7 +73,7 @@ msgid ""
 "('|') should not be changed. They get their values from the 'General "
 "Settings' tab."
 msgstr ""
-"创建samba设置的 \"/etc/samba/smb.conf.template\" 文件的内容。被通道符|包围的"
+"创建 samba 设置的 \"/etc/samba/smb.conf.template\" 文件的内容。被通道符 | 包围的"
 "值可在基本设置中进行配置"
 
 msgid "Workgroup"

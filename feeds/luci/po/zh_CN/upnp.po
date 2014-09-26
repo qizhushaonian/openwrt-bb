@@ -16,19 +16,19 @@ msgstr ""
 msgid ""
 "ACLs specify which external ports may be redirected to which internal "
 "addresses and ports"
-msgstr "指定外部端口的ACL可能会被重定向至某些内部地址及端口"
+msgstr "指定外部端口的 ACL 可能会被重定向至某些内部地址及端口"
 
 msgid "Action"
 msgstr "动作"
 
 msgid "Active UPnP Redirects"
-msgstr "活动的UPnP重定向"
+msgstr "活动的 UPnP 重定向"
 
 msgid "Advanced Settings"
 msgstr "高级设置"
 
 msgid "Allow adding forwards only to requesting ip addresses"
-msgstr "允许添加只转发给请求的IP地址(当启用时，UPnP的客户可以只转发到其IP)"
+msgstr "允许添加只转发给请求的 IP 地址(当启用时，UPnP 的客户可以只转发到其 IP)"
 
 msgid "Announced model number"
 msgstr "公布的型号"
@@ -49,7 +49,7 @@ msgid "Client Port"
 msgstr "客户端端口"
 
 msgid "Collecting data..."
-msgstr "正在收集数据"
+msgstr "正在收集数据..."
 
 msgid "Comment"
 msgstr "备注"
@@ -58,16 +58,16 @@ msgid "Delete Redirect"
 msgstr "删除转发规则"
 
 msgid "Device UUID"
-msgstr "设备UUID"
+msgstr "设备 UUID"
 
 msgid "Downlink"
 msgstr "下行速率"
 
 msgid "Enable NAT-PMP functionality"
-msgstr "启用NAT-PMP功能"
+msgstr "启用 NAT-PMP 功能"
 
 msgid "Enable UPnP functionality"
-msgstr "启用UPnP功能"
+msgstr "启用 UPnP 功能"
 
 msgid "Enable additional logging"
 msgstr "启用额外的日志记录"
@@ -91,10 +91,10 @@ msgid "Internal ports"
 msgstr "内部端口"
 
 msgid "MiniUPnP ACLs"
-msgstr "MiniUPnP的ACL"
+msgstr "MiniUPnP 的 ACL"
 
 msgid "MiniUPnP settings"
-msgstr "MiniUPnP设置"
+msgstr "MiniUPnP 设置"
 
 msgid "Notify interval"
 msgstr "警报间隔"
@@ -103,7 +103,7 @@ msgid "Port"
 msgstr "端口"
 
 msgid "Presentation URL"
-msgstr "显示URL"
+msgstr "显示 URL"
 
 msgid "Protocol"
 msgstr "协议"
@@ -115,7 +115,7 @@ msgid "Report system instead of daemon uptime"
 msgstr "用系统运行时间代替进程运行时间"
 
 msgid "Start UPnP and NAT-PMP service"
-msgstr "启动UPnP与NAT-PMP服务"
+msgstr "启动 UPnP 与 NAT-PMP 服务"
 
 msgid "There are no active redirects."
 msgstr "没有活动的重定向"
@@ -126,19 +126,19 @@ msgstr "UPNP"
 msgid ""
 "UPnP allows clients in the local network to automatically configure the "
 "router."
-msgstr "UPnP允许局域网内客户端自动设置路由上的端口转发。"
+msgstr "UPnP 允许局域网内客户端自动设置路由上的端口转发。"
 
 msgid "UPnP lease file"
-msgstr "UPnP租约文件"
+msgstr "UPnP 租约文件"
 
 msgid "Universal Plug & Play"
-msgstr "通用即插即用(UPnP)"
+msgstr "通用即插即用 (UPnP)"
 
 msgid "Uplink"
 msgstr "上行速率"
 
 msgid "Value in KByte/s, informational only"
-msgstr "值为KByte/s，仅供参考"
+msgstr "值为 KByte/s，仅供参考"
 
 #~ msgid ""
 #~ "UPNP allows clients in the local network to automatically configure the "

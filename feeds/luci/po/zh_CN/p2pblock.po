@@ -17,27 +17,27 @@ msgid "Block Time"
 msgstr "封锁时间"
 
 msgid "Enable P2P-Block"
-msgstr "启动P2P封锁"
+msgstr "启动 P2P 封锁"
 
 msgid "IP-P2P"
 msgstr "IP-P2P"
 
 msgid "Layer7-Protocols"
-msgstr "第7层协议"
+msgstr "第 7 层协议"
 
 msgid "P2P-Block"
-msgstr "P2P封锁"
+msgstr "P2P 封锁"
 
 msgid ""
 "P2P-Block is a greylisting mechanism to block various peer-to-peer protocols "
 "for non-whitelisted clients."
-msgstr "P2P封锁使用灰名单机制，以阻止非白名单客户的各种P2P协议。"
+msgstr "P2P 封锁使用灰名单机制，以阻止非白名单客户的各种 P2P 协议。"
 
 msgid "Portrange"
 msgstr "端口范围"
 
 msgid "Whitelisted IPs"
-msgstr "白名单IP地址"
+msgstr "白名单 IP 地址"
 
 msgid "seconds"
 msgstr "秒"

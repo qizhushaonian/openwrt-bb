@@ -60,7 +60,7 @@
 							html += String.format(
 								'%s%s/%d',
 								i ? ', ' : '',
-								ifc.ip6addrs[i].addr.toUpperCase(),
+								ifc.ip6addrs[i].addr.toLowerCase(),
 								ifc.ip6addrs[i].prefix
 							);
 

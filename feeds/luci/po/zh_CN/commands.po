@@ -35,7 +35,7 @@ msgid "Code:"
 msgstr "代码："
 
 msgid "Collecting data..."
-msgstr "收集数据："
+msgstr "正在收集数据..."
 
 msgid "Command"
 msgstr "命令"
@@ -88,7 +88,7 @@ msgstr "运行"
 msgid ""
 "This page allows you to configure custom shell commands which can be easily "
 "invoked from the web interface."
-msgstr "此页面允许您配置自定义Shell命令，并可以从Web界面调用shell命令。"
+msgstr "此页面允许您配置自定义 Shell 命令，并可以从 Web 界面调用 shell 命令。"
 
 msgid "Waiting for command to complete..."
-msgstr "等待命令执行完成... ..."
+msgstr "等待命令执行完成..."

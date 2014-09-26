@@ -29,7 +29,7 @@ msgid "(Unnamed Rule)"
 msgstr "(未命名规则)"
 
 msgid "(Unnamed SNAT)"
-msgstr "(未命名SNAT)"
+msgstr "(未命名 SNAT)"
 
 msgid "-- Please choose --"
 msgstr "-- 请选择 --"
@@ -38,10 +38,10 @@ msgid "-- custom --"
 msgstr "-- 自定义 --"
 
 msgid "<var>%d</var> pkts. per <var>%s</var>"
-msgstr "<var>%d</var> 包.每 <var>%s</var>"
+msgstr "<var>%d</var> 包每 <var>%s</var>"
 
 msgid "<var>%d</var> pkts. per <var>%s</var>, burst <var>%d</var> pkts."
-msgstr "<var>%d</var> 包. 每 <var>%s</var>, 突发 <var>%d</var> 包."
+msgstr "<var>%d</var> 包每 <var>%s</var>, 突发 <var>%d</var> 包"
 
 msgid "<var>%s</var> and limit to %s"
 msgstr "<var>%s</var> 并且限制到 %s"
@@ -82,7 +82,7 @@ msgstr ""
 "默认的规则运行后立即执行。"
 
 msgid "Destination IP address"
-msgstr "目标IP地址"
+msgstr "目标 IP 地址"
 
 msgid "Destination address"
 msgstr "目标地址"
@@ -94,7 +94,7 @@ msgid "Destination zone"
 msgstr "目标区域"
 
 msgid "Do not rewrite"
-msgstr "不填写=（所有端口）"
+msgstr "不填重写"
 
 msgid "Drop invalid packets"
 msgstr "丢弃无效数据包"
@@ -103,16 +103,16 @@ msgid "Enable"
 msgstr "启用"
 
 msgid "Enable NAT Loopback"
-msgstr "启用NAT环回"
+msgstr "启用 NAT 环回"
 
 msgid "Enable SYN-flood protection"
-msgstr "启用SYN-flood防御"
+msgstr "启用 SYN 洪水防御"
 
 msgid "Enable logging on this zone"
 msgstr "在此区域允许进入"
 
 msgid "External IP address"
-msgstr "外部IP地址"
+msgstr "外部 IP 地址"
 
 msgid "External port"
 msgstr "外部端口"
@@ -136,7 +136,7 @@ msgid "Firewall - Traffic Rules"
 msgstr "防火墙 - 通信规则"
 
 msgid "Firewall - Zone Settings"
-msgstr "防火墙-区域设置"
+msgstr "防火墙 - 区域设置"
 
 msgid "Force connection tracking"
 msgstr "强制连接追踪"
@@ -166,13 +166,13 @@ msgid "IPv4 and IPv6"
 msgstr "IPv4 和 IPv6"
 
 msgid "IPv4 only"
-msgstr "仅IPv4"
+msgstr "仅 IPv4"
 
 msgid "IPv6"
 msgstr "IPv6"
 
 msgid "IPv6 only"
-msgstr "仅IPv6"
+msgstr "仅 IPv6"
 
 msgid "Input"
 msgstr "入站数据"
@@ -181,7 +181,7 @@ msgid "Inter-Zone Forwarding"
 msgstr "端口触发"
 
 msgid "Internal IP address"
-msgstr "内部IP地址"
+msgstr "内部 IP 地址"
 
 msgid "Internal port"
 msgstr "内部端口"
@@ -193,19 +193,19 @@ msgid "Limit log messages"
 msgstr "限制日志信息"
 
 msgid "MSS clamping"
-msgstr "MSS钳制"
+msgstr "MSS 钳制"
 
 msgid "Masquerading"
-msgstr "IP动态伪装"
+msgstr "IP 动态伪装"
 
 msgid "Match"
 msgstr "匹配规则"
 
 msgid "Match ICMP type"
-msgstr "匹配ICMP类型"
+msgstr "匹配 ICMP 类型"
 
 msgid "Match forwarded traffic to the given destination port or port range."
-msgstr "需要匹配转发流量到的目标端口或端口范围"
+msgstr "需要匹配转发流量到的目标端口或端口范围。"
 
 msgid ""
 "Match incoming traffic directed at the given destination port or port range "
@@ -215,13 +215,13 @@ msgstr "需要匹配入站流量到的目标端口或端口范围"
 msgid ""
 "Match incoming traffic originating from the given source port or port range "
 "on the client host."
-msgstr "需要匹配入站流量的源端口或端口范围"
+msgstr "需要匹配入站流量的源端口或端口范围。"
 
 msgid "Name"
 msgstr "名字"
 
 msgid "New SNAT rule"
-msgstr "新建SNAT规则"
+msgstr "新建 SNAT 规则"
 
 msgid "New forward rule"
 msgstr "新建转发规则"
@@ -233,16 +233,16 @@ msgid "New port forward"
 msgstr "新建端口转发"
 
 msgid "New source NAT"
-msgstr "新建Source NAT"
+msgstr "新建 SNAT"
 
 msgid "Only match incoming traffic directed at the given IP address."
-msgstr "需要匹配入站流量的源IP"
+msgstr "需要匹配入站流量的源 IP"
 
 msgid "Only match incoming traffic from these MACs."
-msgstr "需要匹配入站流量的源MACs（可以为多个）"
+msgstr "需要匹配入站流量的源 MAC (可以为多个)"
 
 msgid "Only match incoming traffic from this IP or range."
-msgstr "需要匹配入站流量的源IP或IP范围"
+msgstr "需要匹配入站流量的源 IP 或 IP 范围"
 
 msgid ""
 "Only match incoming traffic originating from the given source port or port "
@@ -259,7 +259,7 @@ msgid "Output"
 msgstr "出站数据"
 
 msgid "Passes additional arguments to iptables. Use with care!"
-msgstr "传递到iptables的额外参数。小心使用！"
+msgstr "传递到 iptables 的额外参数。小心使用！"
 
 msgid "Port Forwards"
 msgstr "端口转发"
@@ -267,7 +267,7 @@ msgstr "端口转发"
 msgid ""
 "Port forwarding allows remote computers on the Internet to connect to a "
 "specific computer or service within the private LAN."
-msgstr "端口转发允许来自Internet的计算机访问私有局域网内的计算机或服务"
+msgstr "端口转发允许来自 Internet 的计算机访问私有局域网内的计算机或服务。"
 
 msgid "Protocol"
 msgstr "协议"
@@ -294,7 +294,7 @@ msgstr "将匹配流量的源地址改写成指定地址"
 msgid ""
 "Rewrite matched traffic to the given source port. May be left empty to only "
 "rewrite the IP address."
-msgstr "将匹配流量的源端口改写成指定端口。也可以留空，只改写IP地址。"
+msgstr "将匹配流量的源端口改写成指定端口。也可以留空，只改写 IP 地址。"
 
 msgid "Rewrite to source %s"
 msgstr "源地址改写成 %s"
@@ -303,7 +303,7 @@ msgid "Rewrite to source %s, %s"
 msgstr "源地址改写成 %s, %s"
 
 msgid "SNAT IP address"
-msgstr "SNAT IP地址"
+msgstr "SNAT IP 地址"
 
 msgid "SNAT port"
 msgstr "SNAT 端口"

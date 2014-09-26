@@ -14,22 +14,22 @@ msgstr ""
 "X-Generator: Pootle 2.0.6\n"
 
 msgid "Check for changed IP every"
-msgstr "检查IP变动的时间间隔"
+msgstr "检查 IP 变动的时间间隔"
 
 msgid "Check-time unit"
 msgstr "时间单位"
 
 msgid "Custom update-URL"
-msgstr "更新的URL"
+msgstr "更新的 URL"
 
 msgid "Dynamic DNS"
-msgstr "动态DNS"
+msgstr "动态 DNS"
 
 msgid ""
 "Dynamic DNS allows that your router can be reached with a fixed hostname "
 "while having a dynamically changing IP address."
 msgstr ""
-"动态DNS允许为主机配置一个固定的可访问域名， 但该域名对应的IP可以是动态的."
+"动态 DNS 允许为主机配置一个固定的可访问域名， 但该域名对应的 IP 可以是动态的."
 
 msgid "Enable"
 msgstr "启用"
@@ -56,7 +56,7 @@ msgid "Service"
 msgstr "服务提供商"
 
 msgid "Source of IP address"
-msgstr "IP地址来源"
+msgstr "IP 地址来源"
 
 msgid "URL"
 msgstr "URL"

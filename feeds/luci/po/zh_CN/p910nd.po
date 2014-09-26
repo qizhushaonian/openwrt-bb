@@ -22,7 +22,7 @@ msgstr "设备"
 msgid ""
 "First you have to install the packages to get support for USB (kmod-usb-"
 "printer) or parallel port (kmod-lp)."
-msgstr "必须安装支持USB打印机的驱动(kmod-usb-printer)或者并口驱动(kmod-lp)"
+msgstr "必须安装支持 USB 打印机的驱动 (kmod-usb-printer) 或者并口驱动 (kmod-lp)"
 
 msgid "Interface"
 msgstr "接口"
@@ -37,7 +37,7 @@ msgid "Specifies the interface to listen on."
 msgstr "指定监听端口"
 
 msgid "TCP listener port."
-msgstr "TCP监听端口"
+msgstr "TCP 监听端口"
 
 msgid "enable"
 msgstr "启用"

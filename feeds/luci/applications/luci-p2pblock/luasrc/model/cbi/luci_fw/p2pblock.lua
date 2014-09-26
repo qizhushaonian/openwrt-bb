@@ -17,7 +17,7 @@ local sys = require "luci.sys"
 m = Map("freifunk_p2pblock", translate("P2P-Block"),
 	translate("P2P-Block is a greylisting mechanism to block various peer-to-peer protocols for non-whitelisted clients."))
 
-s = m:section(NamedSection, "p2pblock", "settings", "Settings")
+s = m:section(NamedSection, "p2pblock", "settings", translate("Settings"))
 s.anonymous = true
 s.addremove = false
 
