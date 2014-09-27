@@ -1,0 +1,208 @@
+#!/bin/sh
+# Copyright (C) 2005-2014 NowRush Studio
+# Author: hackpascal <hackpascal@gmail.com>
+
+. $IPKG_INSTROOT/lib/functions.sh
+
+begin_section()
+{
+	local SECTION=$1
+	
+	echo "[$SECTION]" >> $PROXY_INI
+}
+
+end_section()
+{
+	local SECTION=
+
+	echo "" >> $PROXY_INI
+}
+
+output_field()
+{
+	local UCI_SECTION=$1
+	local KEY=$2
+	local INIFIELD=$3
+	local DEFVALUE=$4
+	local value
+
+	if [ -z "$INIFIELD" ]; then INIFIELD=$KEY; fi
+
+	config_get value "$UCI_SECTION" "$KEY"
+	if [ -z "$value" ]; then value=$DEFVALUE; fi
+	
+	echo "$INIFIELD = $value" >> $PROXY_INI
+}
+
+output_const()
+{
+	local INIFIELD=$1
+	local value=$2
+	
+	echo "$INIFIELD = $value" >> $PROXY_INI
+}
+
+get_value()
+{
+	local UCI_SECTION=$1
+	local KEY=$2
+	local value
+
+	config_get value "$UCI_SECTION" "$KEY"
+
+	echo $value
+}
+
+iplist_iterate()
+{
+	local config=$1
+	local name
+	local ips
+	
+	config_get name "$config" name
+	config_get ips "$config" ips
+
+	output_const $name "$ips"
+}
+
+profile_iterate()
+{
+	local config=$1
+	local host
+	local ip
+	
+	config_get host "$config" host
+	config_get items "$config" items
+
+	output_const "$host" "$items"
+}
+
+PROXY_INI=$1
+
+config_load goagent
+
+
+echo -n "" > $PROXY_INI
+
+# [listen]
+begin_section listen
+output_field listen ip
+output_field listen port
+output_field listen username
+output_field listen password
+output_const visible 1
+output_const debuginfo 0
+end_section
+
+# [gae]
+begin_section gae
+output_const enable 1
+output_field gae appid
+output_field gae password
+output_field gae path
+output_field gae mode
+output_field gae sslversion "" TLSv1
+output_field gae window "" 7
+output_field gae cachesock "" 1
+output_field gae keepalive "" 0
+output_field gae obfuscate "" 0
+output_field gae pagespeed "" 0
+output_field gae validate "" 0
+output_const transport 0
+output_field gae regions ""
+output_field gae maxsize "" 2097152
+
+ipv6=0
+if [ x`get_value gae profile` = xipv6 ]; then ipv6=1; fi
+output_const ipv6 $ipv6
+
+rc4=
+if [ x`get_value gae rc4` = x1 ]; then rc4=rc4; fi
+output_const options $rc4
+
+end_section
+
+# [iplist]
+begin_section iplist
+config_foreach iplist_iterate iplist
+end_section
+
+# [profile]
+begin_section "profile"
+config_foreach profile_iterate profile
+end_section
+
+# [pac]
+begin_section "pac"
+output_field pac enabled "enable" 0
+output_field pac ip
+output_field pac port
+output_const file proxy.pac
+output_field pac gfwlist
+output_field pac adblock
+output_field pac expired
+output_field pac admode
+end_section
+
+# [php]
+begin_section "php"
+output_const "enable" 0
+output_const password 123456
+output_const crlf 0
+output_const validate 0
+output_const listen 0.0.0.0:8088
+output_const fetchserver "http://.com/"
+output_const usehosts 1
+end_section
+
+# [proxy]
+begin_section "proxy"
+output_field proxy enabled "enable" 0
+output_const autodetect 1
+output_field proxy host
+output_field proxy port
+output_field proxy username
+output_field proxy password
+end_section
+
+# [autorange]
+begin_section "autorange"
+output_field autorange hosts
+output_field autorange endswith
+output_field autorange noendswith
+output_field autorange threads
+output_field autorange maxsize
+output_field autorange waitsize
+output_field autorange bufsize
+end_section
+
+# [dns]
+begin_section "dns"
+output_const "enable" 0
+output_const listen "127.0.0.1:53"
+output_const internal "114.114.114.114|114.114.115.115"
+output_const external "8.8.8.8|8.8.4.4"
+output_const servers "8.8.8.8|8.8.4.4|114.114.114.114|114.114.115.115"
+output_const blacklist "1.1.1.1|255.255.255.255|74.125.127.102|74.125.155.102|74.125.39.102|74.125.39.113|209.85.229.138|4.36.66.178|8.7.198.45|37.61.54.158|46.82.174.68|59.24.3.173|64.33.88.161|64.33.99.47|64.66.163.251|65.104.202.252|65.160.219.113|66.45.252.237|72.14.205.104|72.14.205.99|78.16.49.15|93.46.8.89|128.121.126.139|159.106.121.75|169.132.13.103|192.67.198.6|202.106.1.2|202.181.7.85|203.161.230.171|203.98.7.65|207.12.88.98|208.56.31.43|209.145.54.50|209.220.30.174|209.36.73.33|209.85.229.138|211.94.66.147|213.169.251.35|216.221.188.182|216.234.179.13|243.185.187.3|243.185.187.39"
+output_const tcpover ".youtube.com|.ytimg.com|.googlevideo.com"
+end_section
+
+# [useragent]
+begin_section "useragent"
+output_field useragent enabled "enable" 0
+output_field useragent string
+end_section
+
+# [fetchmax]
+begin_section "fetchmax"
+output_const "local"
+output_const server
+end_section
+
+# [love]
+begin_section "love"
+output_const "enable" 0
+output_const tip
+end_section
+
+

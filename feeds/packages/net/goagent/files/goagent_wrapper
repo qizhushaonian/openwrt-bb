@@ -1,0 +1,84 @@
+#!/bin/sh
+
+. $IPKG_INSTROOT/lib/functions.sh
+
+RUN=/var/run/goagent
+
+config_load goagent
+
+config_get gaeenabled listen enabled
+
+if [ x"$gaeenabled" != x1 ]; then
+	echo "Error: GoAgent is disabled"
+	exit 1
+fi
+
+config_get proxy_py_path extern proxy_py
+config_get proxy_pac_path extern proxy_pac
+config_get proxylib_py_path extern proxylib_py
+config_get dnslib_path extern dnslib
+config_get cert_path extern cert
+config_get replace_pac extern replace_pac
+
+if [ -z "$proxy_py_path" ] || ! [ -f "$proxy_py_path" ]; then proxy_py_path="/usr/lib/goagent/proxy.py"; fi
+if [ -z "$proxy_pac_path" ] || ! [ -f "$proxy_pac_path" ]; then proxy_pac_path="/etc/goagent/proxy.pac"; fi
+if [ -z "$proxylib_py_path" ] || ! [ -f "$proxylib_py_path" ]; then proxylib_py_path="/etc/goagent/proxylib.py"; fi
+if [ -z "$dnslib_path" ] || ! [ -f "$dnslib_path" ]; then dnslib_path="/usr/lib/goagent/dnslib.egg"; fi
+if [ -z "$cert_path" ] || ! [ -f "$cert_path" ]; then cert_path="/etc/goagent/CA.crt"; fi
+
+if ! [ -f "$proxy_py_path" ]; then
+	echo "Error: Main proxy executable file $proxy_py_path does not exist!"
+	exit 1
+fi
+
+if ! [ -f "$proxy_pac_path" ]; then
+	echo "Warning: Proxy auto configuration file $proxy_pac_path does not exist!"
+fi
+
+if ! [ -f "$proxylib_py_path" ]; then
+	echo "Warning: Proxy library file $proxylib_py_path does not exist!"
+fi
+
+echo "Using $proxy_py_path as main proxy executable"
+echo "Using $proxy_pac_path as proxy auto configuration file"
+echo "Using $proxylib_py_path as proxy library file"
+echo "Using $dnslib_path as python dns library"
+echo "Using $cert_path as fake https certificate file"
+
+mkdir -p $RUN
+cp "$proxy_py_path" $RUN/proxy.py
+cp "$proxylib_py_path" $RUN/proxylib.py
+cp "$dnslib_path" $RUN/
+cp "$proxy_pac_path" $RUN/proxy.pac || true
+cp "$cert_path" $RUN/CA.crt || true
+cp /usr/lib/goagent/dnsproxy.py $RUN/ || true
+/usr/lib/goagent/genproxyini $RUN/proxy.ini
+
+config_get pacenabed pac enabled
+
+if [ x"$pacenabed" = x1 ] && [ x"$replace_pac" == x1 ]; then
+	config_get listenip listen extip
+	config_get listenport listen extport
+	config_get pacip pac extip
+	config_get pacport pac extport
+
+	if [ -z "$listenip" ]; then
+		config_get listenip listen ip
+	fi
+	if [ -z "$listenport" ]; then
+		config_get listenport listen port
+	fi
+	if [ -z "$pacip" ]; then
+		config_get pacip pac ip
+	fi
+	if [ -z "$pacport" ]; then
+		config_get pacport pac port
+	fi
+	sed -i "s/PROXY 127.0.0.1:8087/PROXY $listenip:$listenport/g" $RUN/proxy.pac
+	sed -i "s/PROXY 127.0.0.1:8086/PROXY $pacip:$pacport/g" $RUN/proxy.pac
+fi
+
+exec python $RUN/proxy.py
+
+echo "Error: Unable to execute goagent!"
+exit 1

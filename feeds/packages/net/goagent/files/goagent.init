@@ -1,0 +1,36 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2005-2014 NowRush Studio
+# Author: hackpascal <hackpascal@gmail.com>
+
+START=60
+
+RUN=/var/run/goagent
+
+start()
+{
+	stop
+
+	start-stop-daemon -Sqbm -x "/usr/lib/goagent/goagent_wrapper" -p $RUN/proxy.pid
+}
+
+stop()
+{
+	if [ -f $RUN/proxy.pid ]; then
+		start-stop-daemon -Kq -p $RUN/proxy.pid 2>/dev/null
+		kill -9 `cat $RUN/proxy.pid` 2>/dev/null
+		rm -f $RUN/proxy.pid 2>/dev/null
+	fi
+	
+	rm -rf $RUN/* 2>/dev/null
+
+	# ensure all proxy.py have been killed
+	# avaliable on busybox
+	kill `ps | grep python | grep $RUN/proxy.py | cut -d ' ' -f 2` 2>/dev/null
+}
+
+restart()
+{
+	stop
+	sleep 1
+	start
+}
