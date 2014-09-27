@@ -1,0 +1,16 @@
+<%-
+	local uci = require "luci.model.uci".cursor()
+
+	local value = uci:get("goagent", "autorange", "noendswith")
+
+	if value == nil then
+		value = ".xml|.json|.html|.php|.py|.js|.css|.jpg|.jpeg|.png|.gif|.ico|.webp"
+	end
+-%>
+<div class="cbi-value cbi-value-last" id="cbi-goagent-autorange-noendswith"><label class="cbi-value-title" for="cbid.goagent.autorange.noendswith"><%:Disallowed Extensions%></label>
+	<div class="cbi-value-field">
+
+	<input type="text" class="cbi-input-text" style="width:400px" onchange="cbi_d_update(this.id)" name="cbid.goagent.autorange.noendswith" id="cbid.goagent.autorange.noendswith" value="<%=value%>" />
+	
+	</div>
+</div>

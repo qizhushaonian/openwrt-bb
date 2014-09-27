@@ -1,0 +1,22 @@
+<%-
+	local uci = require "luci.model.uci".cursor()
+
+	local value = uci:get("goagent", "autorange", "hosts")
+
+	if value == nil then
+		value = "*.c.youtube.com|*.atm.youku.com|*.googlevideo.com|*av.vimeo.com|smile-*.nicovideo.jp|video.*.fbcdn.net|s*.last.fm|x*.last.fm|*.x.xvideos.com|*.edgecastcdn.net|*.d.rncdn3.com|cdn*.public.tube8.com|videos.flv*.redtubefiles.com|cdn*.public.extremetube.phncdn.com|cdn*.video.pornhub.phncdn.com|*.mms.vlog.xuite.net|vs*.thisav.com|archive.rthk.hk|video*.modimovie.com|*.c.docs.google.com"
+	end
+-%>
+<div class="cbi-value cbi-value-last" id="cbi-goagent-autorange-hosts"><label class="cbi-value-title" for="cbid.goagent.autorange.hosts"><%:Host List%></label>
+	<div class="cbi-value-field">
+
+	<input type="text" class="cbi-input-text" style="width:400px" onchange="cbi_d_update(this.id)" name="cbid.goagent.autorange.hosts" id="cbid.goagent.autorange.hosts" value="<%=value%>" />
+	<br />
+
+	<div class="cbi-value-description">
+		<span class="cbi-value-helpicon"><img src="/luci-static/resources/cbi/help.gif" alt="<%:Help%>" /></span>
+		<%:Use "|" to seperate each host.%>
+	</div>
+	
+	</div>
+</div>

@@ -1,0 +1,16 @@
+<%-
+	local uci = require "luci.model.uci".cursor()
+
+	local ua = uci:get("goagent", "useragent", "string")
+
+	if value == nil then
+		value = "Mozilla/5.0 (iPhone; U; CPU like Mac OS X; en) AppleWebKit/420+ (KHTML, like Gecko) Version/3.0 Mobile/1A543a Safari/419.3"
+	end
+-%>
+<div class="cbi-value cbi-value-last" id="cbi-goagent-useragent-string"><label class="cbi-value-title" for="cbid.goagent.useragent.string"><%:String%></label>
+	<div class="cbi-value-field">
+
+	<input type="text" class="cbi-input-text" style="width:400px" onchange="cbi_d_update(this.id)" name="cbid.goagent.useragent.string" id="cbid.goagent.useragent.string" value="<%=ua%>" />
+	
+	</div>
+</div>

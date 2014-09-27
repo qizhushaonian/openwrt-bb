@@ -1,0 +1,16 @@
+<%-
+	local uci = require "luci.model.uci".cursor()
+
+	local value = uci:get("goagent", "autorange", "endswith")
+
+	if value == nil then
+		value = ".f4v|.flv|.hlv|.m4v|.mp4|.mp3|.ogg|.avi|.exe|.zip|.iso|.rar|.bz2|.xz|.dmg"
+	end
+-%>
+<div class="cbi-value cbi-value-last" id="cbi-goagent-autorange-endswith"><label class="cbi-value-title" for="cbid.goagent.autorange.endswith"><%:Allowed Extensions%></label>
+	<div class="cbi-value-field">
+
+	<input type="text" class="cbi-input-text" style="width:400px" onchange="cbi_d_update(this.id)" name="cbid.goagent.autorange.endswith" id="cbid.goagent.autorange.endswith" value="<%=value%>" />
+	
+	</div>
+</div>

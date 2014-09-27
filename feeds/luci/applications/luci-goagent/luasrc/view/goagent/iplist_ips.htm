@@ -1,0 +1,12 @@
+<%-
+	local uci = require "luci.model.uci".cursor()
+
+	local value = uci:get("goagent", section, "ips")
+-%>
+<td class="cbi-value-field">
+	<div id="cbi-goagent-<%=section%>-ips">
+
+		<input type="text" class="cbi-input-text" style="width:100%" onchange="cbi_d_update(this.id)" name="cbid.goagent.<%=section%>.ips" id="cbid.goagent.<%=section%>.ips" value="<%=value%>" />
+	
+	</div>
+</td>

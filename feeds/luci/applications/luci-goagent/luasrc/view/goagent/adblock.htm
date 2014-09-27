@@ -1,0 +1,16 @@
+<%-
+	local uci = require "luci.model.uci".cursor()
+
+	local value = uci:get("goagent", "pac", "adblock")
+
+	if value == nil then
+		value = "http://adblock-chinalist.googlecode.com/svn/trunk/adblock.txt"
+	end
+-%>
+<div class="cbi-value cbi-value-last" id="cbi-goagent-pac-adblock"><label class="cbi-value-title" for="cbid.goagent.pac.adblock"><%:AdBlock list subscription URL%></label>
+	<div class="cbi-value-field">
+
+	<input type="text" class="cbi-input-text" style="width:400px" onchange="cbi_d_update(this.id)" name="cbid.goagent.pac.adblock" id="cbid.goagent.pac.adblock" value="<%=value%>" />
+	
+	</div>
+</div>

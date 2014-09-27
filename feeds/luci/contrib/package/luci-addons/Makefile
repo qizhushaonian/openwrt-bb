@@ -190,6 +190,7 @@ $(eval $(call application,radvd,LuCI Support for Radvd,radvd))
 $(eval $(call application,ahcp,LuCI Support for AHCPd,ahcpd))
 $(eval $(call application,wshaper,LuCI Support for wshaper,wshaper))
 $(eval $(call application,w8021x,Wired 802.1X Authentication,wpa_cli))
+$(eval $(call application,goagent,GoAgent Proxy,goagent))
 
 $(eval $(call application,pbx,LuCI PBX Administration,\
 	asterisk18 \

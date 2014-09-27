@@ -1,0 +1,16 @@
+<%-
+	local uci = require "luci.model.uci".cursor()
+
+	local value = uci:get("goagent", "pac", "gfwlist")
+
+	if value == nil then
+		value = "http://autoproxy-gfwlist.googlecode.com/svn/trunk/gfwlist.txt"
+	end
+-%>
+<div class="cbi-value cbi-value-last" id="cbi-goagent-pac-gfwlist"><label class="cbi-value-title" for="cbid.goagent.pac.gfwlist"><%:GFW blocked list subscription URL%></label>
+	<div class="cbi-value-field">
+
+	<input type="text" class="cbi-input-text" style="width:400px" onchange="cbi_d_update(this.id)" name="cbid.goagent.pac.gfwlist" id="cbid.goagent.pac.gfwlist" value="<%=value%>" />
+	
+	</div>
+</div>

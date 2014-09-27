@@ -1,0 +1,289 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-01-31 22:30+0800\n"\
+"Last-Translator: hackpascal <hackpascal@gmail.com>\n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.0.6\n"
+
+msgid "GoAgent"
+msgstr "GoAgent"
+
+msgid "GoAgent Proxy"
+msgstr "GoAgent 代理"
+
+msgid "GoAgent - General Settings"
+msgstr "GoAgent - 常规设置"
+
+msgid "GoAgent - Rule Settings"
+msgstr "GoAgent - 规则设置"
+
+msgid "GoAgent - Miscellaneous Settings"
+msgstr "GoAgent - 杂项设置"
+
+msgid "GoAgent - External Settings"
+msgstr "GoAgent - 外部设置"
+
+msgid "GoAgent - Hosts File"
+msgstr "GoAgent - Hosts 文件"
+
+msgid "GoAgent - Certificate Settings"
+msgstr "GoAgent - 证书设置"
+
+msgid "GoAgent - Custom PAC file"
+msgstr "GoAgent - 自定义 PAC"
+
+msgid "Rule Settings"
+msgstr "规则设置"
+
+msgid "Certificate Settings"
+msgstr "证书设置"
+
+msgid "Custom PAC file"
+msgstr "自定义 PAC"
+
+msgid "Miscellaneous Settings"
+msgstr "杂项设置"
+
+msgid "External Settings"
+msgstr "外部设置"
+
+msgid "Hosts File"
+msgstr "Hosts 文件"
+
+msgid "GoAgent is a tool based on Google App Engine that can break the Greate FireWall."
+msgstr "GoAgent 是一个基于 Google App Engine 用于翻墙的工具。"
+
+msgid "Listening Settings"
+msgstr "监听设置"
+
+msgid "Listen IP"
+msgstr "监听 IP"
+
+msgid "Listen Port"
+msgstr "监听端口"
+
+msgid "External IP"
+msgstr "外部 IP"
+
+msgid "External Port"
+msgstr "外部端口"
+
+msgid "Google App Engine Settings"
+msgstr "Google App Engine 设置"
+
+msgid "App ID"
+msgstr "App ID"
+
+msgid "Use \"|\" to seperate each AppID."
+msgstr "使用 \"|\" 分隔每个 AppID。"
+
+msgid "Server Path"
+msgstr "服务器路径"
+
+msgid "Access Mode"
+msgstr "访问模式"
+
+msgid "Whether to use secured http to access the GAE."
+msgstr "是否使用 HTTPS 来访问 GAE。"
+
+msgid "Profile"
+msgstr "配置文件"
+
+msgid ""
+"If IPv6 is selected, the \"IPv6 Rule Lists\" will be used. "
+"Otherwise the IPv4* will be used. This will only be applied in IPv6 environment."
+msgstr "如果选择 IPv6，则使用 \"IPv6 规则设置\" 的内容，否则使用 IPv4* 的内容。非 IPv6 环境无需考虑，请勿随意修改。"
+
+msgid "Window"
+msgstr "优选 IP 数量"
+
+msgid "Number of IPs to be used."
+msgstr "IP 评优算法每次选出的 IP 数量。"
+
+msgid "Cache used IP connections"
+msgstr "缓存 IP 评优算法生成的临时连接"
+
+msgid "Traffic obfuscate"
+msgstr "开启流量混淆"
+
+msgid "Certificate validation"
+msgstr "验证服务器证书"
+
+msgid "Use pagespeed to access GAE"
+msgstr "使用 pagespeed 服务访问 GAE"
+
+msgid "Max. return size"
+msgstr "单次最大返回大小"
+
+msgid "Maximum return size in each urlfetch"
+msgstr "每次 urlfetch 最大返回的文件大小"
+
+msgid "Enable RC4 Encryption"
+msgstr "启用 RC4 加密"
+
+msgid "If enabled, the Password field must be set. It is not recommended to be enabled when Access Mode is set to HTTPS."
+msgstr "如果启用，则需设置密码。一般访问模式为 HTTPS 时无需开启。"
+
+msgid "Proxy Auto-Config (PAC) Settings"
+msgstr "代理自动配置 (PAC) 设置"
+
+msgid "If enabled, the PAC address is http://&lt;Server IP&gt;:&lt;Port&gt;/proxy.pac"
+msgstr "如果启用，PAC 脚本地址为 http://&lt;服务器 IP&gt;:&lt;端口&gt;/proxy.pac"
+
+msgid "Server IP"
+msgstr "服务器 IP"
+
+msgid "GFW blocked list subscription URL"
+msgstr "被墙规则订阅地址"
+
+msgid "AdBlock list subscription URL"
+msgstr "广告拦截规则订阅地址"
+
+msgid "Automatic update cycle"
+msgstr "自动更新间隔时间"
+
+msgid "Secondary Proxy Settings"
+msgstr "二级代理设置"
+
+msgid "Host IP"
+msgstr "代理服务器地址"
+
+msgid "User-Agent Settings"
+msgstr "User-Agent 设置"
+
+msgid "String"
+msgstr "字符串"
+
+msgid "Auto range download"
+msgstr "自动分段下载"
+
+msgid ""
+"Auto range download is used to split big data into small pieces, "
+"i.e. multithread downloading. The hosts must support HTTP Range header."
+msgstr "自动分段下载用于将大文件分段下载，实现多线程下载。需要服务器支持 HTTP Range 报头。"
+
+msgid "Host List"
+msgstr "主机列表"
+
+msgid "Use \"|\" to seperate each host."
+msgstr "使用 \"|\" 分隔每个主机名。"
+
+msgid "Allowed Extensions"
+msgstr "匹配的扩展名"
+
+msgid "Disallowed Extensions"
+msgstr "禁止的扩展名"
+
+msgid "Threads"
+msgstr "线程数"
+
+msgid "Max packet size"
+msgstr "一次最大下载量"
+
+msgid "First R/W size"
+msgstr "首次读写量"
+
+msgid "Follow-up R/W size"
+msgstr "后续读写量"
+
+msgid "Use \"|\" to seperate each site."
+msgstr "使用 \"|\" 分隔每个站点。"
+
+msgid "IP Lists"
+msgstr "IP 地址列表"
+
+msgid "IP Lists to be used to connect to the GAE. Use \"|\" to seperate each IP/Domain."
+msgstr "IP 地址列表被用来连接到 GAE。使用 \"|\" 来分隔每个 IP/域名。"
+
+msgid "IPs/Domains"
+msgstr "IP/域名"
+
+msgid "Rule Lists"
+msgstr "规则列表"
+
+msgid ""
+"The following items specified the forwarding rules. For example, using crlf will lead "
+"GoAgent to use CrLf; using no forcehttps will lead GoAgent not to use https."
+msgstr ""
+"以下项目指定了匹配域名的转发规则。例如指定 crlf 则使用 CrLf 换行符；使用 noforcehttps 则强制不使用 https。"
+
+msgid "Host/RegExp"
+msgstr "主机名/正则表达式"
+
+msgid "Rules"
+msgstr "规则"
+
+msgid "WAN IP address used for port forwarding."
+msgstr "用于端口转发的 WAN IP 地址。"
+
+msgid "WAN Port used for port forwarding."
+msgstr "用于端口转发的 WAN 端口。"
+
+msgid ""
+"GoAgent uses a fake root certificate, which used to generate website certs to replace "
+"the original certs. This is used to cheat browsers to avoid certificate warnings. "
+"This certificate will be applied the next time GoAgent starts. The certificate locates at /etc/goagent/CA.crt"
+msgstr ""
+"GoAgent 使用一个伪造的根证书来生成针对于各个使用 HTTPS 的网站的假证书，以避免出现证书错误的警告。"
+"此证书将在 GoAgent 下次启动时生效。文件路径为 /etc/goagent/CA.crt"
+
+msgid ""
+"The \"PROXY 127.0.0.1:8087\" and \"PROXY 127.0.0.1:8086\" will be replaced with External IP and Port. "
+"This file will be applied the next time GoAgent starts."
+msgstr "PAC 文件中的 \"PROXY 127.0.0.1:8087\" 和 \"PROXY 127.0.0.1:8086\" 将会被替换为外部 IP 和端口。"
+"此文件将在 GoAgent 下次启动时生效。"
+
+msgid "Directly-connect regions"
+msgstr "直连区域"
+
+msgid "Specify country regions used to connect directly. Country codes listed in http://dev.maxmind.com/geoip/legacy/codes/iso3166/"
+msgstr "指定要使用直接连接的区域。使用 | 分隔。区域代码参考 http://dev.maxmind.com/geoip/legacy/codes/iso3166/"
+
+msgid "External executable Settings"
+msgstr "外部程序设置"
+
+msgid "proxy.py Path"
+msgstr "proxy.py 路径"
+
+msgid "proxy.pac Path"
+msgstr "proxy.pac 路径"
+
+msgid "proxylib.py Path"
+msgstr "proxylib.py 路径"
+
+msgid "dnslib Path"
+msgstr "dnslib 路径"
+
+msgid "Certificate Path"
+msgstr "证书路径"
+
+msgid "Replace proxy addresses in proxy.pac"
+msgstr "替换 proxy.pac 中的代理地址"
+
+msgid "This is the content of /etc/hosts."
+msgstr "这是 /etc/hosts 文件的内容。"
+
+msgid "Access username"
+msgstr "访问用户名"
+
+msgid "Access password"
+msgstr "访问密码"
+
+msgid "Used for proxy access authentication"
+msgstr "用于访问认证，防止其他人使用"
+
+msgid "SSL version"
+msgstr "SSL 协议版本"
+
+msgid "Keep alive"
+msgstr "保持活动"
+
+msgid "Keep connection alive"
+msgstr "保持活动连接"
