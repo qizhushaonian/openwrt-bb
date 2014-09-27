@@ -1,0 +1,15 @@
+--- a/setup.py
++++ b/setup.py
+@@ -233,6 +233,12 @@
+         if configure:
+             configure(self, ext)
+ 
++        compiler = self.compiler
++
++        if compiler.__class__.__name__ == "UnixCCompiler":
++            if "mips" in os.environ.get("ARCH"):
++                compiler.compiler_so += ["-mno-mips16"]
++
+     def build_extension(self, ext):
+         self.gevent_prepare(ext)
+         try:
