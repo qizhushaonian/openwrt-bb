@@ -1,0 +1,13 @@
+--- a/setup.py
++++ b/setup.py
+@@ -66,6 +66,10 @@
+     return
+ 
+         compiler.compiler_so += ["-fno-tree-dominator-opts"]
++
++        if "mips" in os.environ.get("ARCH"):
++            compiler.compiler_so += ["-mno-mips16"]
++
+         tmpdir = tempfile.mkdtemp()
+ 
+         try:
