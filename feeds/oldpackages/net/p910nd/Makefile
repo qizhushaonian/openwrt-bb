@@ -45,12 +45,23 @@ MAKE_FLAGS += \
 	CFLAGS="$(TARGET_CFLAGS) -DLOCKFILE_DIR=\"\\\"/tmp\"\\\""
 
 define Package/p910nd/install
-	$(INSTALL_DIR) $(1)/usr/sbin
-	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/p910nd $(1)/usr/sbin/
 	$(INSTALL_DIR) $(1)/etc/config
-	$(INSTALL_DATA) ./files/p910nd.config $(1)/etc/config/p910nd
 	$(INSTALL_DIR) $(1)/etc/init.d
+	$(INSTALL_DIR) $(1)/etc/hotplug.d/usb
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
+	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_DIR) $(1)/CONTROL
+
+	$(CP) $(PKG_INSTALL_DIR)/usr/sbin/p910nd $(1)/usr/sbin/
+
+	$(INSTALL_DATA) ./files/p910nd.config $(1)/etc/config/p910nd
 	$(INSTALL_BIN) ./files/p910nd.init $(1)/etc/init.d/p910nd
+	$(INSTALL_BIN) ./files/10-usb_printer $(1)/etc/hotplug.d/usb
+	$(INSTALL_BIN) ./files/luci-p910nd $(1)/etc/uci-defaults
+
+	$(INSTALL_BIN) ./files/{usb_printer_detect,usb_printer_hotplug} $(1)/usr/sbin
+
+	$(INSTALL_BIN) ./ipkg/postinst $(1)/CONTROL
 endef
 
 $(eval $(call BuildPackage,p910nd))
