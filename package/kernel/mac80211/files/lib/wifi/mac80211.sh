@@ -79,7 +79,7 @@ detect_mac80211() {
 		ssid_suffix=_$(cat /sys/class/ieee80211/${dev}/addresses | sed 's/.[0-9A-Fa-f]:.[0-9A-Fa-f]:.[0-9A-Fa-f]:\(.[0-9A-Fa-f]\):\(.[0-9A-Fa-f]\):\(.[0-9A-Fa-f]\)/\1\2\3/g' | tr :[a-z] :[A-Z])
 
 		iw phy "$dev" info | grep -q 'Capabilities:' && htmode=HT20
-		iw phy "$dev" info | grep -q '2412 MHz' || { mode_band="a"; channel="36"; }
+		iw phy "$dev" info | grep -q '2412 MHz' || { mode_band="a"; channel="149"; }
 
 		vht_cap=$(iw phy "$dev" info | grep -c 'VHT Capabilities')
 		[ "$vht_cap" -gt 0 ] && {
