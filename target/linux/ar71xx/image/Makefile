@@ -1239,6 +1239,7 @@ $(eval $(call SingleProfile,TPLINK-LZMA,64kraw,TLWDR4300V1IL,tl-wdr4300-v1-il,TL
 $(eval $(call SingleProfile,TPLINK-LZMA,64kraw,TLWDR4310V1,tl-wdr4310-v1,TL-WDR4300,ttyS0,115200,0x43100001,1,8Mlzma))
 $(eval $(call SingleProfile,TPLINK-LZMA,64kraw,TLWDR4900V2,tl-wdr4900-v2,TL-WDR4900-v2,ttyS0,115200,0x49000002,1,8Mlzma))
 $(eval $(call SingleProfile,TPLINK-LZMA,64kraw,MW4530RV1,mw4530r-v1,TL-WDR4300,ttyS0,115200,0x45300001,1,8Mlzma))
+$(eval $(call SingleProfile,TPLINK-LZMA,64kraw,TLWR882N,tl-wr882n-v1,TL-WR882N-v1,ttyS0,115200,0x08820001,1,8Mlzma))
 
 $(eval $(call SingleProfile,TPLINK-LZMA,64kraw,SMART-300,smart-300,SMART-300,ttyS0,115200,0x93410001,1,8Mlzma))
 
