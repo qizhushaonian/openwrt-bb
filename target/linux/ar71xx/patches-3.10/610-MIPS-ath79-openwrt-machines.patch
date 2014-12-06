@@ -1,6 +1,6 @@
 --- a/arch/mips/ath79/machtypes.h
 +++ b/arch/mips/ath79/machtypes.h
-@@ -16,22 +16,152 @@
+@@ -16,22 +16,153 @@
  
  enum ath79_mach_type {
  	ATH79_MACH_GENERIC = 0,
@@ -112,6 +112,7 @@
 +	ATH79_MACH_TL_WR841N_V7,	/* TP-LINK TL-WR841N/ND v7 */
 +	ATH79_MACH_TL_WR841N_V8,	/* TP-LINK TL-WR841N/ND v8 */
 +	ATH79_MACH_TL_WR842N_V2,	/* TP-LINK TL-WR842N/ND v2 */
++	ATH79_MACH_TL_WR882N_V1,	/* TP-LINK TL-WR882N v1 */
 +	ATH79_MACH_TL_WR941ND,		/* TP-LINK TL-WR941ND */
 +	ATH79_MACH_TL_WR941ND_V6,	/* TP-LINK TL-WR941ND v6 */
 +	ATH79_MACH_TL_WR941ND_V7,	/* TP-LINK TL-WR941ND v7 */
@@ -217,7 +218,7 @@
  config ATH79_MACH_AP121
  	bool "Atheros AP121 reference board"
  	select SOC_AR933X
-@@ -9,64 +64,777 @@ config ATH79_MACH_AP121
+@@ -9,64 +64,786 @@ config ATH79_MACH_AP121
  	select ATH79_DEV_GPIO_BUTTONS
  	select ATH79_DEV_LEDS_GPIO
  	select ATH79_DEV_M25P80
@@ -906,6 +907,15 @@
 +	select ATH79_DEV_USB
 +	select ATH79_DEV_WMAC
 +
++config ATH79_MACH_TL_WR882N_V1
++	bool "TP-LINK TL-WR882N/ND v1 support"
++	select SOC_QCA956X
++	select ATH79_DEV_ETH
++	select ATH79_DEV_GPIO_BUTTONS
++	select ATH79_DEV_LEDS_GPIO
++	select ATH79_DEV_M25P80
++	select ATH79_DEV_WMAC
++
 +config ATH79_MACH_TL_WR941ND
 +	bool "TP-LINK TL-WR941ND support"
 +	select SOC_AR913X
@@ -1120,7 +1130,7 @@
  endif
 --- a/arch/mips/ath79/Makefile
 +++ b/arch/mips/ath79/Makefile
-@@ -38,9 +38,95 @@ obj-$(CONFIG_ATH79_ROUTERBOOT)		+= route
+@@ -38,9 +38,96 @@ obj-$(CONFIG_ATH79_ROUTERBOOT)		+= route
  #
  # Machines
  #
@@ -1187,6 +1197,7 @@
 +obj-$(CONFIG_ATH79_MACH_TL_WR742N_V5)	+= mach-tl-wr742n-v5.o
 +obj-$(CONFIG_ATH79_MACH_TL_WR841N_V1)	+= mach-tl-wr841n.o
 +obj-$(CONFIG_ATH79_MACH_TL_WR841N_V8)	+= mach-tl-wr841n-v8.o
++obj-$(CONFIG_ATH79_MACH_TL_WR882N_V1)	+= mach-tl-wr882n-v1.o
 +obj-$(CONFIG_ATH79_MACH_TL_WR941ND)	+= mach-tl-wr941nd.o
 +obj-$(CONFIG_ATH79_MACH_TL_WR941ND_V7)	+= mach-tl-wr941nd-v7.o
 +obj-$(CONFIG_ATH79_MACH_TL_WR1041N_V2)	+= mach-tl-wr1041n-v2.o

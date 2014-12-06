@@ -18,14 +18,14 @@
  	select SOC_AR913X
 --- a/arch/mips/ath79/Makefile
 +++ b/arch/mips/ath79/Makefile
-@@ -100,6 +100,7 @@ obj-$(CONFIG_ATH79_MACH_TL_WR741ND)	+= m
- obj-$(CONFIG_ATH79_MACH_TL_WR741ND_V4)	+= mach-tl-wr741nd-v4.o
+@@ -105,6 +105,7 @@ obj-$(CONFIG_ATH79_MACH_TL_WR741ND)	+= m
  obj-$(CONFIG_ATH79_MACH_TL_WR841N_V1)	+= mach-tl-wr841n.o
  obj-$(CONFIG_ATH79_MACH_TL_WR841N_V8)	+= mach-tl-wr841n-v8.o
+ obj-$(CONFIG_ATH79_MACH_TL_WR882N_V1)	+= mach-tl-wr882n-v1.o
 +obj-$(CONFIG_ATH79_MACH_TL_WR841N_V9)	+= mach-tl-wr841n-v9.o
  obj-$(CONFIG_ATH79_MACH_TL_WR941ND)	+= mach-tl-wr941nd.o
+ obj-$(CONFIG_ATH79_MACH_TL_WR941ND_V7)	+= mach-tl-wr941nd-v7.o
  obj-$(CONFIG_ATH79_MACH_TL_WR1041N_V2)	+= mach-tl-wr1041n-v2.o
- obj-$(CONFIG_ATH79_MACH_TL_WR1043ND)	+= mach-tl-wr1043nd.o
 --- a/arch/mips/ath79/machtypes.h
 +++ b/arch/mips/ath79/machtypes.h
 @@ -124,6 +124,7 @@ enum ath79_mach_type {
