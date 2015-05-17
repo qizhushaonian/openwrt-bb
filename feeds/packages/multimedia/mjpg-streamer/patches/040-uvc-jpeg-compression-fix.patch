@@ -1,0 +1,25 @@
+--- a/plugins/input_uvc/jpeg_utils.c
++++ b/plugins/input_uvc/jpeg_utils.c
+@@ -197,7 +197,7 @@
+                 }
+             }
+ 
+-            row_pointer = (JSAMPROW*)line_buffer;
++            row_pointer = (JSAMPROW*)&line_buffer;
+             jpeg_write_scanlines(&cinfo, row_pointer, 1);
+         }
+     } else if (vd->formatIn == V4L2_PIX_FMT_RGB565) {
+@@ -219,11 +219,11 @@
+                 yuyv += 2;
+             }
+ 
+-            row_pointer = (JSAMPROW*)line_buffer;
++            row_pointer = (JSAMPROW*)&line_buffer;
+             jpeg_write_scanlines(&cinfo, row_pointer, 1);
+         }
+     } else if (vd->formatIn == V4L2_PIX_FMT_RGB24) {
+-        jpeg_write_scanlines(&cinfo, (JSAMPROW*)vd->framebuffer, vd->height);
++        jpeg_write_scanlines(&cinfo, (JSAMPROW*)&vd->framebuffer, vd->height);
+     }
+ 
+     jpeg_finish_compress(&cinfo);
