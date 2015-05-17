@@ -40,6 +40,9 @@ start_instance() {
 		fi
 		input_arg="${input_arg} --device $device"
 
+		config_get yuv "$s" 'yuv'
+		[ x"$yuv" == x"1" ] && input_arg="${input_arg} --yuv"
+
 		config_get fps "$s" 'fps'
 		[ -n "$fps" ] && input_arg="${input_arg} --fps $fps"
 
