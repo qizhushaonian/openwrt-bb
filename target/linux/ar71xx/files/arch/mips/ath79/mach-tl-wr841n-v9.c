@@ -19,6 +19,7 @@
 #include "dev-gpio-buttons.h"
 #include "dev-leds-gpio.h"
 #include "dev-m25p80.h"
+#include "dev-usb.h"
 #include "dev-wmac.h"
 #include "machtypes.h"
 #include "tplink-wmac.h"
@@ -130,6 +131,8 @@ static void __init tl_wr841n_v9_setup(void)
 	ath79_register_gpio_keys_polled(1, TL_WR841NV9_KEYS_POLL_INTERVAL,
 					ARRAY_SIZE(tl_wr841n_v9_gpio_keys),
 					tl_wr841n_v9_gpio_keys);
+
+	ath79_register_usb();
 }
 
 MIPS_MACHINE(ATH79_MACH_TL_WR841N_V9, "TL-WR841N-v9", "TP-LINK TL-WR841N/ND v9",
