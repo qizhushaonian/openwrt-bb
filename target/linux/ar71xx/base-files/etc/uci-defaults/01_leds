@@ -471,6 +471,10 @@ zcn-1523h-5)
 	ucidef_set_led_netdev "lan1" "lan1" "zcn-1523h:green:lan1" "eth0"
 	ucidef_set_led_netdev "lan2" "lan2" "zcn-1523h:green:lan2" "eth1"
 	;;
+
+huawei-wa161dd)
+	ucidef_set_led_netdev "lan" "LAN" "huawei:green:lan" "eth0"
+	;;
 esac
 
 ucidef_commit_leds

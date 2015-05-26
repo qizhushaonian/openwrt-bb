@@ -260,6 +260,7 @@ platform_check_image() {
 	gl-inet | \
 	oolite | \
 	smart-300 | \
+	huawei-wa161dd |\
 	tl-mr10u | \
 	tl-mr11u | \
 	tl-mr13u | \

@@ -313,6 +313,7 @@ tl-wr703n |\
 tube2h |\
 wndap360 |\
 mynet-rext |\
+huawei-wa161dd |\
 wp543)
 	ucidef_set_interface_lan "eth0"
 	;;

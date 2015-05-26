@@ -97,6 +97,9 @@ tplink_board_detect() {
 	"015300"*)
 		model="EasyLink EL-MINI"
 		;;
+	"016100"*)
+		model="Huawei WA161DD-NZ"
+		;;
 	"3C0001"*)
 		model="OOLITE"
 		;;
@@ -779,6 +782,9 @@ ar71xx_board_detect() {
 		;;
 	*"HiWiFi HC6361")
 		name="hiwifi-hc6361"
+		;;
+	*"WA161DD-NZ")
+		name="huawei-wa161dd"
 		;;
 	esac
 
